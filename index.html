@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crescidinhos Fotografia & B.O.B. Curso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Karla', sans-serif;
+      color: #3A322E;
+      background: #F4EAE0;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: 'Lora', serif; }
+    a {
+      color: #3F6E80;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    a:hover { color: #2C4F5D; }
+
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; }
+
+    /* ──── HEADER / HOME ──── */
+    header {
+      width: 100%;
+      background: #F4EAE0;
+      padding: 44px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .header-logo-left, .header-title, .header-logo-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-logo-left, .header-logo-right { flex: 1 1 220px; min-width: 0; }
+    .header-logo-right { justify-content: flex-end; }
+    .header-title { flex: 2 1 320px; min-width: 0; text-align: center; }
+
+    .logo-placeholder {
+      width: 64px;
+      height: 64px;
+      border: 2px dashed #D6A6B4;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #8A8378;
+      flex-shrink: 0;
+    }
+
+    .header-text h1 {
+      font-size: 38px;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+      color: #3A322E;
+      line-height: 1;
+    }
+
+    .header-text p {
+      font-size: 17px;
+      margin: 0;
+      color: #5B5049;
+    }
+
+    .header-brand {
+      text-align: right;
+      min-width: 0;
+    }
+
+    .header-brand .eyebrow {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #7A8C8F;
+      margin-bottom: 4px;
+    }
+
+    .header-brand h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #3F6E80;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .header-brand-left {
+      text-align: left;
+      min-width: 0;
+    }
+
+    .header-brand-left h2 {
+      font-size: 26px;
+      color: #4A6572;
+    }
+
+    .header-brand-left .eyebrow {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #B98CA0;
+      margin-bottom: 4px;
+    }
+
+    /* ──── ENTRADA CARDS ──── */
+    .entrance-section {
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 20px 32px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 36px;
+    }
+
+    .entrance-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .entrance-card-eyebrow {
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #7A8C8F;
+      text-align: center;
+    }
+
+    .entrance-card-img {
+      border: 1px solid #C9A24B;
+      border-radius: 4px;
+      padding: 6px;
+      background: white;
+      aspect-ratio: 1 / 1.15;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8A8378;
+      font-size: 12px;
+      border-radius: 4px;
+    }
+
+    .entrance-card-text {
+      font-size: 14px;
+      color: #5B5049;
+      text-align: center;
+      line-height: 1.6;
+      margin: 2px 0 0 0;
+    }
+
+    /* ──── NAV BUTTONS ──── */
+    .nav-buttons {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 36px 32px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      color: #3A322E;
+      text-align: center;
+      border: 1px solid #B9AE9E;
+      border-radius: 2px;
+      padding: 16px;
+      font-size: 13px;
+      letter-spacing: 3px;
+      background: #EFE4D7;
+      transition: all 0.15s ease;
+    }
+
+    .nav-btn:hover {
+      background: #EADFD1;
+      border-color: #B98F3E;
+    }
+
+    /* ──── SECTIONS ──── */
+    section {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 64px 32px;
+    }
+
+    section.alt-padding { padding: 0 32px 64px; }
+
+    .section-header {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #B98CA0;
+      margin-bottom: 10px;
+    }
+
+    section h2 {
+      font-size: 30px;
+      font-weight: 600;
+      margin: 0 0 16px 0;
+      color: #3A322E;
+    }
+
+    section.content-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 56px;
+      align-items: center;
+    }
+
+    section.content-section p {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: #5B5049;
+      margin: 0 0 14px 0;
+    }
+
+    section.content-section p:last-child {
+      margin: 0;
+    }
+
+    .section-img {
+      width: 100%;
+      height: 360px;
+      border: 2px dashed #DAD5CB;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8A8378;
+      font-size: 12px;
+      background: #FAFAF8;
+    }
+
+    /* ──── SERVICES GRID ──── */
+    .services-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: white;
+      border: 1px solid #E7DCCB;
+      border-radius: 6px;
+      padding: 28px 22px;
+    }
+
+    .service-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 18px;
+      margin: 0 0 10px 0;
+      color: #4A6572;
+    }
+
+    .service-card p {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #5B5049;
+      margin: 0;
+    }
+
+    /* ──── FOOTER ──── */
+    footer {
+      width: 100%;
+      background: #EFE4D7;
+      border-top: 1px solid #E0D3C0;
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 13px;
+      color: #5B5049;
+      line-height: 1.9;
+    }
+
+    footer div { margin-bottom: 0; }
+    footer a { color: #3F6E80; }
+
+    /* ──── RESPONSIVE ──── */
+    @media (max-width: 768px) {
+      header { padding: 28px 0; flex-direction: column; }
+      .header-logo-left, .header-logo-right { flex: 0 0 auto; }
+      .header-title { flex: 0 0 auto; }
+      .header-logo-right { justify-content: center; }
+      .logo-placeholder { width: 48px; height: 48px; }
+      header h1 { font-size: 26px; }
+      .header-text p { font-size: 14px; }
+      section { padding: 36px 32px; }
+      section.alt-padding { padding: 0 32px 36px; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo-left">
+    <div class="logo-placeholder">Logo Crescidinhos</div>
+    <div class="header-brand-left">
+      <div class="eyebrow">CRESCIDINHOS</div>
+      <h2>Crescidinhos</h2>
+    </div>
+  </div>
+
+  <div class="header-title">
+    <div class="header-text">
+      <h1>Duas marcas... um único objetivo!</h1>
+      <p>Fotos sem crises, e uma manada de crianças felizes.</p>
+    </div>
+  </div>
+
+  <div class="header-logo-right">
+    <div class="header-brand">
+      <div class="eyebrow">O FANTÁSTICO MUNDO DE</div>
+      <h2>B.O.B</h2>
+    </div>
+    <div class="logo-placeholder">Logo B.O.B</div>
+  </div>
+</header>
+
+<!-- ENTRADA CARDS -->
+<section class="entrance-section">
+  <a href="cliente/" class="entrance-card">
+    <div class="entrance-card-eyebrow">CLIENTE</div>
+    <div class="entrance-card-img">Foto: brincadeira, sem rosto</div>
+    <p class="entrance-card-text">Uma área para você conhecer mais sobre nosso espaço, e marcar seu ensaio ou evento com mais tranquilidade.</p>
+  </a>
+
+  <a href="aluno/" class="entrance-card">
+    <div class="entrance-card-eyebrow">ALUNO</div>
+    <div class="entrance-card-img">Foto: materiais / brinquedos</div>
+    <p class="entrance-card-text">Uma área para você conhecer mais sobre nossos cursos e materiais.</p>
+  </a>
+</section>
+
+<!-- NAV BUTTONS -->
+<nav class="nav-buttons">
+  <a href="#historia" class="nav-btn">NOSSA HISTÓRIA</a>
+  <a href="#espaco" class="nav-btn">NOSSO ESPAÇO</a>
+  <a href="#servicos" class="nav-btn">NOSSOS SERVIÇOS</a>
+</nav>
+
+<!-- NOSSA HISTÓRIA -->
+<section id="historia" class="content-section">
+  <div class="section-img">Foto: mãos, ambiente, sem rosto</div>
+  <div>
+    <div class="section-header">NOSSA HISTÓRIA</div>
+    <h2>Duas marcas nascidas da mesma escuta</h2>
+    <p>A Crescidinhos nasceu do desejo de fotografar crianças típicas e atípicas sem pressa e sem cobrança — onde o sorriso aparece porque a criança quis, não porque foi mandada sorrir.</p>
+    <p>Do estúdio nasceu o método B.O.B, hoje um curso completo para fotógrafos que querem aprender a fotografar com o mesmo cuidado: brincar, ouvir e brilhar.</p>
+  </div>
+</section>
+
+<!-- NOSSO ESPAÇO -->
+<section id="espaco" class="alt-padding content-section">
+  <div>
+    <div class="section-header">NOSSO ESPAÇO</div>
+    <h2>Um estúdio pensado para a criança se sentir em casa</h2>
+    <p>Cantinho de brincadeiras, tempo livre para explorar e nenhuma pressa: cada ensaio respeita o ritmo de cada criança, típica ou atípica.</p>
+    <p>Ambiente sensorialmente cuidado, em Bauru/SP, com parceria da Família TEA Bauru.</p>
+  </div>
+  <div class="section-img">Foto: cantinho de brincadeiras</div>
+</section>
+
+<!-- NOSSOS SERVIÇOS -->
+<section id="servicos" class="alt-padding">
+  <div class="services-header">
+    <div class="section-header">NOSSOS SERVIÇOS</div>
+    <h2>O que fazemos</h2>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>Ensaios sem crises</h3>
+      <p>Sessões individuais para crianças típicas e atípicas, no ritmo delas.</p>
+    </div>
+    <div class="service-card">
+      <h3>Eventos e datas especiais</h3>
+      <p>Ensaios temáticos e coberturas de datas comemorativas em família.</p>
+    </div>
+    <div class="service-card">
+      <h3>Curso Método B.O.B</h3>
+      <p>Formação para fotógrafos: brincar, ouvir e brilhar em cada ensaio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>Fotografo crianças típicas e atípicas em Bauru/SP.</div>
+  <div>Parceria Família TEA Bauru.</div>
+  <div>Bauru/SP · <a href="mailto:crescidinhosfoto@gmail.com">crescidinhosfoto@gmail.com</a> · <a href="https://instagram.com/thaisdesafotografia">@thaisdesafotografia</a></div>
+  <div style="margin-top: 4px;"><a href="#">Privacidade</a></div>
+</footer>
+
+</body>
+</html>

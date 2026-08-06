@@ -1,0 +1,148 @@
+/* ==========================================================================
+   BASE — componentes. Lê só os papéis do tokens.css, nunca hex direto.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--fg);
+  font-family: var(--fonte-corpo);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.15;
+  margin: 0 0 var(--passo-2);
+  font-weight: 600;
+}
+h1 { font-size: clamp(2rem, 5.5vw, 3.4rem); }
+h2 { font-size: clamp(1.5rem, 3.6vw, 2.3rem); }
+h3 { font-size: clamp(1.15rem, 2.2vw, 1.4rem); }
+
+p { margin: 0 0 var(--passo-2); max-width: var(--largura-texto); }
+a { color: inherit; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+.env  { width: min(100% - 2.5rem, var(--largura-max)); margin-inline: auto; }
+.sec  { padding-block: var(--passo-5); }
+.sec--alt { background: var(--fundo-alt); }
+.centro { text-align: center; }
+.centro p { margin-inline: auto; }
+
+/* ---------------------------------------------------------------- botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: .6rem;
+  padding: .95rem 1.9rem;
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  font-family: var(--fonte-cta);
+  font-size: 1.02rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 0; border-radius: var(--raio);
+  cursor: pointer;
+  transition: transform .15s ease, filter .15s ease;
+}
+.btn:hover  { filter: brightness(1.06); transform: translateY(-1px); }
+.btn:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
+
+.btn--linha {
+  background: transparent;
+  color: var(--fg);
+  border: 1.5px solid var(--borda);
+}
+
+/* ---------------------------------------------------------------- portal */
+.portas {
+  display: grid; gap: var(--passo-3);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: var(--passo-4);
+}
+.porta {
+  display: flex; flex-direction: column;
+  padding: var(--passo-4) var(--passo-3);
+  border-radius: 10px;
+  text-decoration: none;
+  min-height: 300px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.porta:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(0,0,0,.13); }
+.porta h2 { margin-bottom: var(--passo-1); }
+.porta p  { flex: 1; }
+
+.porta--cresci {
+  background: var(--rosa-claro);
+  color: var(--tinta);
+  border: 1px solid var(--rosa-suave);
+}
+.porta--cresci .porta__cta { color: #8E5C6B; font-weight: 700; }
+
+.porta--bob {
+  background: var(--azul-noite);
+  color: #F4F7F8;
+  border: 1px solid var(--azul-ardosia);
+}
+.porta--bob h2 { font-family: var(--fonte-bob-titulo); }
+.porta--bob .porta__cta { color: var(--amarelo-estrela); font-weight: 700; }
+
+.porta__quem {
+  font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+  opacity: .72; margin-bottom: var(--passo-1);
+}
+
+/* ----------------------------------------------------------------- cards */
+.grade { display: grid; gap: var(--passo-3); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.card {
+  padding: var(--passo-3);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+}
+.card h3 { margin-bottom: var(--passo-1); }
+.card p:last-child { margin-bottom: 0; }
+
+.modulo { display: flex; gap: var(--passo-3); align-items: flex-start; padding-block: var(--passo-3); border-bottom: 1px solid var(--borda); }
+.modulo__n {
+  flex: 0 0 auto; width: 2.6rem; height: 2.6rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--acento); color: var(--cta-fg);
+  font-family: var(--fonte-cta); font-weight: 700;
+}
+.modulo p:last-child { margin-bottom: 0; }
+
+/* ----------------------------------------------------------------- preço */
+.preco { font-family: var(--fonte-titulo); font-size: clamp(2.4rem, 7vw, 3.6rem); line-height: 1; margin: 0; }
+.preco small { display:block; font-family: var(--fonte-corpo); font-size: .95rem; font-weight: 400; opacity: .8; margin-top: .5rem; }
+.preco-antes { text-decoration: line-through; opacity: .6; font-size: 1.1rem; }
+
+.selo {
+  display: inline-block; padding: .3rem .85rem;
+  background: var(--acento); color: var(--cta-fg);
+  border-radius: 999px;
+  font-family: var(--fonte-cta); font-size: .82rem; font-weight: 700;
+  letter-spacing: .02em;
+}
+
+/* ------------------------------------------------------------------- faq */
+details { border-bottom: 1px solid var(--borda); padding-block: var(--passo-2); }
+summary { cursor: pointer; font-weight: 600; font-size: 1.08rem; }
+summary::marker { color: var(--acento); }
+details p { margin-top: var(--passo-1); margin-bottom: 0; color: var(--fg-suave); }
+
+/* ---------------------------------------------------------------- rodapé */
+.rodape { padding-block: var(--passo-4); border-top: 1px solid var(--borda); font-size: .92rem; color: var(--fg-suave); }
+.rodape a { text-decoration: underline; }
+
+.nota { font-size: .9rem; color: var(--fg-suave); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

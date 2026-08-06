@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ensaios de Natal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@600;700&family=Lato:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Lato", sans-serif; background: #fff; color: #333; }
+    
+    header { background: linear-gradient(135deg, #C41E3A 0%, #165E3C 100%); color: white; padding: 2rem; text-align: center; }
+    header h1 { font-size: 2.5rem; font-family: "Cormorant", serif; margin-bottom: 0.5rem; }
+    header p { font-size: 1.1rem; }
+
+    .hero { background: linear-gradient(135deg, #C41E3A 0%, #165E3C 100%); color: white; padding: 3rem 2rem; text-align: center; }
+    .hero h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+
+    .container { max-width: 1000px; margin: 3rem auto; padding: 2rem; }
+
+    .lotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0; }
+    .lote { background: white; border: 3px solid #D9A7B4; border-radius: 12px; padding: 2rem; text-align: center; position: relative; transition: all 0.3s; }
+    .lote:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+    
+    .lote-numero { position: absolute; top: -20px; left: 20px; background: #D9A7B4; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; }
+    
+    .lote h2 { margin-top: 1rem; color: #8B5A6F; font-family: "Cormorant", serif; }
+    .lote .preco { font-size: 2rem; color: #D9A7B4; font-weight: 700; margin: 1rem 0; }
+    .lote .periodo { background: #EDD5DF; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-weight: 600; color: #8B5A6F; }
+    .lote .info { font-size: 0.9rem; color: #666; margin: 1rem 0; }
+
+    .btn { display: inline-block; background: #D9A7B4; color: white; padding: 1rem 2rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.3s; width: 100%; }
+    .btn:hover { background: #8B5A6F; }
+
+    .destaque { background: #EDD5DF; padding: 2rem; border-radius: 12px; margin: 2rem 0; }
+    .destaque p { font-size: 1rem; line-height: 1.8; }
+
+    .faq { max-width: 700px; margin: 2rem auto; }
+    .faq-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #ddd; }
+    .faq-item h3 { color: #8B5A6F; margin-bottom: 0.5rem; }
+    .faq-item p { font-size: 0.95rem; color: #666; margin: 0; }
+
+    .cta-final { background: #D9A7B4; color: white; padding: 2rem; border-radius: 12px; text-align: center; margin: 2rem 0; }
+    .cta-final h2 { color: white; }
+    .cta-final a { background: white; color: #D9A7B4; }
+
+    footer { background: #333; color: #ccc; padding: 2rem; text-align: center; }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      .hero h2 { font-size: 1.5rem; }
+      .lotes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎄 Ensaios de Natal 🎄</h1>
+  <p>3 lotes · 80 vagas · Preço crescente</p>
+</header>
+
+<section class="hero">
+  <h2>Capture a magia do Natal</h2>
+  <p>Estúdio decorado com temática natalina, luz especial, cenários bonitos. Sessão de 20-30 min, sem pressa, no tempo da sua criança. Ensaio sem crise e sem "sorri pra foto" forçado.</p>
+</section>
+
+<div class="container">
+  <div class="lotes">
+    <div class="lote">
+      <div class="lote-numero">1</div>
+      <h2>Lote 1</h2>
+      <div class="preco">R$ 297</div>
+      <div class="periodo">21/set — 21/out</div>
+      <div class="info">📅 24 vagas · 8/dia</div>
+      <a href="https://app.crescidinhosfoto.com.br" class="btn">Reservar Agora</a>
+    </div>
+
+    <div class="lote">
+      <div class="lote-numero">2</div>
+      <h2>Lote 2</h2>
+      <div class="preco">R$ 367</div>
+      <div class="periodo">22/out — 22/nov</div>
+      <div class="info">📅 24 vagas · 8/dia</div>
+      <a href="https://app.crescidinhosfoto.com.br" class="btn">Reservar Agora</a>
+    </div>
+
+    <div class="lote">
+      <div class="lote-numero">3</div>
+      <h2>Lote 3</h2>
+      <div class="preco">R$ 447</div>
+      <div class="periodo">23/nov — 21/dez</div>
+      <div class="info">📅 32 vagas · 8/dia</div>
+      <a href="https://app.crescidinhosfoto.com.br" class="btn">Reservar Agora</a>
+    </div>
+  </div>
+
+  <div class="destaque">
+    <p>
+      💡 <strong>Um detalhe importante:</strong> Temos horários especiais com o estúdio reservado para crianças que precisam de menos estímulo. 
+      Primeiro e último horário de cada dia — luz suave, sem barulho, ritmo calmo. É cuidado com a criança, não benefício terapêutico.
+    </p>
+  </div>
+
+  <h2 style="text-align: center; margin-top: 3rem; font-family: 'Cormorant', serif; font-size: 1.8rem; color: #8B5A6F;">Dúvidas?</h2>
+
+  <div class="faq">
+    <div class="faq-item">
+      <h3>Qual é a diferença entre os lotes?</h3>
+      <p>Período diferente = preço diferente. Lote 1 em setembro é mais barato; Lote 3 em dezembro é o pico do Natal. Escolha o que encaixa na sua agenda!</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Quanto tempo dura a sessão?</h3>
+      <p>20-30 minutos, com tranquilidade. Tempo suficiente pra ter boas fotos, sem pressa.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Quando recebo as fotos?</h3>
+      <p>Em até 3 dias, todas editadas. Entregues por link privado — você não precisa vir buscar nada.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>E se minha criança não quiser?</h3>
+      <p>Temos experiência com crianças atípicas. Se algo não der, reagendamos sem custo até 48h antes.</p>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h2>Pronto pra Marcar?</h2>
+    <p style="margin: 1rem 0; font-size: 1rem;">Cada lote tem vagas limitadas. Quanto mais cedo, melhor o preço!</p>
+    <a href="https://app.crescidinhosfoto.com.br" class="btn">Entrar no App</a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Crescidinhos Fotografia — Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
