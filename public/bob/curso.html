@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O Fantástico Mundo de B.O.B.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Fredoka", sans-serif; background: #4A6270; color: white; }
+    
+    header { background: #2C3E47; padding: 1.5rem 2rem; text-align: center; }
+    header h1 { font-size: 2rem; color: #E8AE3B; margin-bottom: 0.5rem; }
+    header p { font-size: 1rem; color: #ccc; }
+
+    .hero { position: relative; height: 60vh; background: linear-gradient(135deg, #4A6270 0%, #2C3E47 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+    .hero h2 { font-size: 2.5rem; color: #E8AE3B; margin-bottom: 1rem; }
+    .hero p { font-size: 1.1rem; color: #fff; max-width: 600px; line-height: 1.6; }
+
+    .container { max-width: 900px; margin: 3rem auto; padding: 2rem; background: white; border-radius: 12px; color: #333; }
+    
+    h2 { font-size: 1.8rem; color: #4A6270; margin-bottom: 1.5rem; text-align: center; }
+    p { font-size: 1rem; line-height: 1.8; margin-bottom: 1.5rem; }
+    
+    .modulos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .modulo { background: #F5F5F5; padding: 1.5rem; border-left: 4px solid #E8AE3B; border-radius: 8px; }
+    .modulo h3 { color: #4A6270; margin-bottom: 0.5rem; }
+    .modulo p { font-size: 0.9rem; color: #666; margin: 0; }
+
+    .preco-box { background: #4A6270; color: white; padding: 2rem; border-radius: 12px; text-align: center; margin: 2rem 0; }
+    .preco-box .valor { font-size: 2.5rem; font-weight: 700; color: #E8AE3B; margin: 1rem 0; }
+    .preco-box .original { text-decoration: line-through; color: #aaa; font-size: 1.2rem; }
+
+    .btn { display: inline-block; background: #E8AE3B; color: #4A6270; padding: 1rem 2.5rem; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; text-decoration: none; transition: all 0.3s; }
+    .btn:hover { background: white; transform: translateY(-2px); }
+
+    .cta { text-align: center; margin: 2rem 0; }
+    .garantia { font-size: 0.9rem; color: #666; margin-top: 1rem; }
+
+    footer { background: #2C3E47; padding: 2rem; text-align: center; color: #ccc; }
+    footer a { color: #E8AE3B; }
+
+    @media (max-width: 768px) {
+      .hero h2 { font-size: 1.8rem; }
+      .hero p { font-size: 0.95rem; }
+      .modulos { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>O Fantástico Mundo de B.O.B.</h1>
+  <p>Brincar · Ouvir · Brilhar</p>
+</header>
+
+<section class="hero">
+  <div>
+    <h2>Curso para Fotógrafas</h2>
+    <p>Aprenda a trabalhar com crianças atípicas, sem crises, com método. Nosso trabalho funciona para TODOS os tipos de crianças — atípicas e típicas também!</p>
+  </div>
+</section>
+
+<div class="container">
+  <h2>O que você vai aprender</h2>
+
+  <div class="modulos">
+    <div class="modulo">
+      <h3>Módulo 1</h3>
+      <p>O Método</p>
+    </div>
+    <div class="modulo">
+      <h3>Módulo 2</h3>
+      <p>Brincar</p>
+    </div>
+    <div class="modulo">
+      <h3>Módulo 3</h3>
+      <p>Ouvir</p>
+    </div>
+    <div class="modulo">
+      <h3>Módulo 4</h3>
+      <p>Brilhar</p>
+    </div>
+    <div class="modulo">
+      <h3>Módulo 5</h3>
+      <p>Negócio</p>
+    </div>
+    <div class="modulo">
+      <h3>Bônus</h3>
+      <p>Glossário (9 diagnósticos)</p>
+    </div>
+  </div>
+
+  <div class="preco-box">
+    <p>Preço Normal</p>
+    <div class="valor">R$ 697</div>
+    <p style="color: #ccc; margin: 1rem 0;">Acesso vitalício · 5 módulos · Glossário · Comunidade · Atualizações</p>
+    <hr style="opacity: 0.3; margin: 1.5rem 0;">
+    <p style="margin-bottom: 0.5rem;">Oferta Especial — Primeiras 48h</p>
+    <p style="color: #E8AE3B; font-size: 0.95rem; margin-bottom: 1rem;">Só pra quem comentar QUERO</p>
+    <div class="valor"><span class="original">R$ 697</span> → R$ 497</div>
+  </div>
+
+  <div class="cta">
+    <a href="https://app.hotmart.com/" class="btn">Acessar Carrinho</a>
+    <p class="garantia">✓ Garantia de 7 dias ou seu dinheiro de volta</p>
+  </div>
+
+  <hr style="margin: 2rem 0; opacity: 0.2;">
+
+  <div style="background: #EFF5F9; padding: 1.5rem; border-radius: 8px; text-align: center; margin: 2rem 0;">
+    <p style="color: #666; margin-bottom: 1rem;">Tem dúvidas sobre o curso? Entre em contato!</p>
+    <a href="https://wa.me/5514988404870" style="display: inline-block; background: #25D366; color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s;" target="_blank">WhatsApp: (14) 98840-4870</a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 O Fantástico Mundo de B.O.B. — Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

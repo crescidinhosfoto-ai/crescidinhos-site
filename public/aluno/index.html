@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área do Aluno - B.O.B Curso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Karla', sans-serif;
+      color: #3A322E;
+      background: #F0EEEA;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    h1, h2, h3 { font-family: 'Lora', serif; }
+    a {
+      color: #3F6E80;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    a:hover { color: #2C4F5D; }
+
+    .page-wrapper { flex: 1; width: 100%; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; }
+
+    /* ──── HEADER ──── */
+    header {
+      width: 100%;
+      padding: 36px 32px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .header-left-back {
+      font-size: 12px;
+      color: #7A8C8F;
+    }
+
+    .header-left h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin: 0;
+      color: #3A322E;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-placeholder {
+      width: 56px;
+      height: 56px;
+      border: 2px dashed #D6A6B4;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #8A8378;
+      flex-shrink: 0;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-info .label {
+      font-family: 'Lora', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #3F6E80;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .brand-info .eyebrow {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: #7A8C8F;
+    }
+
+    /* ──── MÉTODO SECTION ──── */
+    .metodo-section {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 36px 32px 0;
+    }
+
+    .metodo-section h2 {
+      font-family: 'Lora', serif;
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0 0 6px 0;
+      color: #3A322E;
+    }
+
+    .metodo-section > p {
+      font-size: 14.5px;
+      color: #5B5049;
+      margin: 0 0 28px 0;
+    }
+
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .pilar {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pilar h3 {
+      font-family: 'Lora', serif;
+      font-size: 18px;
+      margin: 0;
+      color: #4A6572;
+    }
+
+    .pilar p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #5B5049;
+      margin: 0;
+    }
+
+    /* ──── MATERIAIS GRID ──── */
+    .materiais-section {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 48px 32px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 22px;
+    }
+
+    .material {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .material-img {
+      width: 100%;
+      height: 220px;
+      border: 2px dashed #DAD5CB;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8A8378;
+      font-size: 11px;
+      background: #FAFAF8;
+    }
+
+    .material-label {
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #3A322E;
+    }
+
+    /* ──── CHAMADA SECTION ──── */
+    .chamada-section {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 44px 32px 0;
+    }
+
+    .chamada-box {
+      background: white;
+      border: 1px solid #E7DCCB;
+      border-radius: 8px;
+      padding: 30px 34px;
+    }
+
+    .chamada-box p {
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: #5B5049;
+      margin: 0 0 12px 0;
+    }
+
+    .chamada-box p:first-child {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 17px;
+      color: #3A322E;
+      margin: 0 0 14px 0;
+    }
+
+    .chamada-box p:last-child {
+      margin: 0;
+    }
+
+    /* ──── CTA SECTION ──── */
+    .cta-section {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 36px 32px 64px;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      text-decoration: none;
+      color: white;
+      background: #3F6E80;
+      padding: 16px 40px;
+      border-radius: 4px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      transition: all 0.15s ease;
+    }
+
+    .cta-btn:hover {
+      background: #2C4F5D;
+    }
+
+    /* ──── FOOTER ──── */
+    footer {
+      width: 100%;
+      background: #E6E3DD;
+      border-top: 1px solid #DAD5CB;
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 13px;
+      color: #5B5049;
+      line-height: 1.9;
+      margin-top: auto;
+    }
+
+    footer a { color: #3F6E80; }
+
+    /* ──── RESPONSIVE ──── */
+    @media (max-width: 768px) {
+      header { flex-direction: column; padding: 28px 32px 12px; }
+      .metodo-section { padding: 28px 32px 0; }
+      .materiais-section { padding: 28px 32px 0; }
+      .chamada-section { padding: 28px 32px 0; }
+      .cta-section { padding: 28px 32px 36px; }
+      .pilares-grid { gap: 20px; }
+      .materiais-section { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <a href="/" class="header-left-back">← Início</a>
+      <h1>Área do aluno</h1>
+    </div>
+    <div class="header-right">
+      <div class="logo-placeholder">Logo B.O.B</div>
+      <div class="brand-info">
+        <div class="eyebrow">O FANTÁSTICO MUNDO DE</div>
+        <div class="label">B.O.B</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MÉTODO: BRINCAR · OUVIR · BRILHAR -->
+  <section class="metodo-section">
+    <h2>Brincar · Ouvir · Brilhar</h2>
+    <p>Três movimentos, nesta ordem. É isso que o curso destrincha.</p>
+
+    <div class="pilares-grid">
+      <div class="pilar">
+        <h3>Brincar</h3>
+        <p>O brincar como ferramenta técnica, não como enfeite do ensaio. É ele que cria a conexão antes do clique.</p>
+      </div>
+      <div class="pilar">
+        <h3>Ouvir</h3>
+        <p>Escuta ativa, anamnese e leitura de crise como pedido de ajuda — você para de torcer pra dar certo e passa a conduzir com estratégia.</p>
+      </div>
+      <div class="pilar">
+        <h3>Brilhar</h3>
+        <p>A criança aparece do jeito dela. Você para de exigir um desempenho que nunca teve a ver com boa fotografia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIAIS -->
+  <section class="materiais-section">
+    <div class="material">
+      <div class="material-img">Capa: Curso B.O.B</div>
+      <div class="material-label">Curso fantástico mundo<br/>de B.O.B</div>
+    </div>
+    <div class="material">
+      <div class="material-img">Capa: Guia de Sobrevivência</div>
+      <div class="material-label">E-book<br/>Guia de Sobrevivência</div>
+    </div>
+    <div class="material">
+      <div class="material-img">Capa: Fotografia Terapêutica</div>
+      <div class="material-label">E-book<br/>Fotografia Terapêutica</div>
+    </div>
+    <div class="material">
+      <div class="material-img">Capa: Acompanhamento Infantil</div>
+      <div class="material-label">Um brinde para você<br/>E-book Acompanhamento Infantil</div>
+    </div>
+  </section>
+
+  <!-- CHAMADA DE VENDAS -->
+  <section class="chamada-section">
+    <div class="chamada-box">
+      <p>Elas já estão no seu estúdio. Com ou sem laudo, com ou sem você saber.</p>
+      <p>Essa frase carrega um diagnóstico silencioso: o problema é a criança. É a única situação profissional em que a gente culpa o cliente pelo resultado.</p>
+      <p>O ensaio termina antes da hora. A mãe pede desculpas mais de uma vez. A família vai embora constrangida — e você também. Não é técnica de câmera que falta. O que falta é saber o que fazer antes de a criança chegar, como conduzir enquanto ela está ali, e o que fazer quando o corpo dela passa do limite.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <a href="/bob/curso.html" class="cta-btn">CONHECER O CURSO B.O.B</a>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>Fotografo crianças típicas e atípicas em Bauru/SP.</div>
+  <div>Parceria Família TEA Bauru.</div>
+  <div>Bauru/SP · <a href="mailto:crescidinhosfoto@gmail.com">crescidinhosfoto@gmail.com</a> · <a href="https://instagram.com/thaisdesafotografia">@thaisdesafotografia</a></div>
+  <div style="margin-top: 4px;"><a href="#">Privacidade</a></div>
+</footer>
+
+</body>
+</html>

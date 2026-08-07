@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área do Cliente - Crescidinhos Fotografia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Karla', sans-serif;
+      color: #3A322E;
+      background: #F0EEEA;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    h1, h2, h3 { font-family: 'Lora', serif; }
+    a {
+      color: #3F6E80;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    a:hover { color: #2C4F5D; }
+
+    .page-wrapper { flex: 1; width: 100%; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; }
+
+    /* ──── HEADER ──── */
+    header {
+      width: 100%;
+      padding: 36px 32px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .header-left-back {
+      font-size: 12px;
+      color: #7A8C8F;
+    }
+
+    .header-left h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin: 0;
+      color: #3A322E;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-placeholder {
+      width: 56px;
+      height: 56px;
+      border: 2px dashed #D6A6B4;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #8A8378;
+      flex-shrink: 0;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-info .label {
+      font-family: 'Lora', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #4A6572;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .brand-info .eyebrow {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #B98CA0;
+    }
+
+    /* ──── TABS ──── */
+    .tabs-nav {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 32px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0;
+    }
+
+    .tabs-nav button {
+      border: none;
+      background: transparent;
+      padding: 16px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      color: #8A8378;
+      border-bottom: 3px solid #DAD5CB;
+      font-family: 'Karla', sans-serif;
+      transition: all 0.15s ease;
+    }
+
+    .tabs-nav button.active {
+      color: #3A322E;
+      border-bottom-color: #3F6E80;
+    }
+
+    .tabs-nav button:hover {
+      color: #3A322E;
+    }
+
+    /* ──── TABS CONTENT ──── */
+    .tabs-content {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 44px 32px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 56px;
+      align-items: center;
+    }
+
+    .tabs-content.hidden { display: none; }
+
+    .tabs-content-text h2 {
+      font-size: 26px;
+      font-weight: 600;
+      margin: 0 0 16px 0;
+      color: #3A322E;
+    }
+
+    .tabs-content-text p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #5B5049;
+      margin: 0 0 14px 0;
+    }
+
+    .tabs-content-text p:last-child {
+      margin: 0;
+    }
+
+    .section-img {
+      width: 100%;
+      height: 340px;
+      border: 2px dashed #DAD5CB;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8A8378;
+      font-size: 12px;
+      background: #FAFAF8;
+    }
+
+    /* ──── PRIVACY BANNER ──── */
+    .privacy-banner {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 44px 32px 0;
+    }
+
+    .privacy-box {
+      background: #F2DCE3;
+      border-radius: 6px;
+      padding: 22px 26px;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #4A3B3F;
+    }
+
+    .privacy-box strong {
+      font-weight: 600;
+    }
+
+    /* ──── ACCESS CARDS ──── */
+    .access-cards {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 36px 32px 64px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .access-card {
+      text-decoration: none;
+      color: inherit;
+      border: 1.5px solid #D6A6B4;
+      border-radius: 8px;
+      padding: 26px 18px;
+      text-align: center;
+      background: #FBF6F0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.15s ease;
+    }
+
+    .access-card:hover {
+      border-color: #B9758A;
+      box-shadow: 0 4px 12px rgba(185, 117, 138, 0.1);
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4A6572;
+    }
+
+    /* Icon styles */
+    .icon-phone {
+      border: 2px solid #4A6572;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .icon-phone::before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border: 1.5px solid #4A6572;
+      border-radius: 50%;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .icon-whatsapp {
+      width: 52px;
+      height: 40px;
+      background: #A9D3D6;
+      border-radius: 16px 16px 16px 4px;
+    }
+
+    .icon-natal {
+      display: flex;
+      gap: 6px;
+    }
+
+    .icon-natal > div {
+      width: 24px;
+      height: 26px;
+      border-radius: 3px;
+      position: relative;
+    }
+
+    .icon-natal > div:first-child {
+      background: #8A9E4E;
+      margin-top: 0;
+    }
+
+    .icon-natal > div:last-child {
+      background: #C7913A;
+      margin-top: 4px;
+    }
+
+    .icon-natal > div::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 4px;
+      background: #C24A3A;
+    }
+
+    .icon-search {
+      width: 34px;
+      height: 34px;
+      border: 3px solid #C9843A;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .icon-search::after {
+      content: '';
+      position: absolute;
+      width: 3px;
+      height: 8px;
+      background: #C9843A;
+      bottom: -10px;
+      right: -10px;
+      transform: rotate(45deg);
+    }
+
+    .icon-video {
+      width: 52px;
+      height: 38px;
+      background: #BFE3C4;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-video::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 12px solid #4A6572;
+    }
+
+    .card-label {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #B9758A;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #5B5049;
+      line-height: 1.6;
+    }
+
+    /* ──── FOOTER ──── */
+    footer {
+      width: 100%;
+      background: #E6E3DD;
+      border-top: 1px solid #DAD5CB;
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 13px;
+      color: #5B5049;
+      line-height: 1.9;
+      margin-top: auto;
+    }
+
+    footer a { color: #3F6E80; }
+
+    /* ──── RESPONSIVE ──── */
+    @media (max-width: 768px) {
+      header { flex-direction: column; padding: 28px 32px 12px; }
+      .tabs-content { padding: 28px 32px 0; }
+      .access-cards { padding: 28px 32px 36px; }
+      .card-icon { width: 40px; height: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <a href="/" class="header-left-back">← Início</a>
+      <h1>Área cliente</h1>
+    </div>
+    <div class="header-right">
+      <div class="logo-placeholder">Logo Crescidinhos</div>
+      <div class="brand-info">
+        <div class="label">Crescidinhos</div>
+        <div class="eyebrow">FOTOGRAFIA</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TABS NAVIGATION -->
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('historia')">NOSSA HISTÓRIA</button>
+    <button class="tab-btn" onclick="switchTab('espaco')">NOSSO ESPAÇO</button>
+  </nav>
+
+  <!-- NOSSA HISTÓRIA TAB -->
+  <section id="historia" class="tabs-content">
+    <div class="section-img">Foto: mãos, ambiente, sem rosto</div>
+    <div class="tabs-content-text">
+      <h2>Fotografia sem crise, com escuta de verdade</h2>
+      <p>Sou a Thaís, fotógrafa de crianças típicas e atípicas em Bauru/SP. Criei o Método B.O.B depois de perceber que a técnica de câmera nunca foi o que faltava — faltava saber o que fazer antes, durante e depois de cada criança chegar.</p>
+      <p>Cada ensaio começa com brincadeira, segue com escuta ativa e termina quando a criança está pronta — nunca antes disso.</p>
+    </div>
+  </section>
+
+  <!-- NOSSO ESPAÇO TAB -->
+  <section id="espaco" class="tabs-content hidden">
+    <div class="tabs-content-text">
+      <h2>Um estúdio para explorar, não para posar</h2>
+      <p>Cantinho de brinquedos, luz natural e nenhum cronômetro. A criança circula livremente enquanto o ensaio acontece ao redor dela.</p>
+      <p>Ambiente pensado também para sensibilidades sensoriais, em parceria com a Família TEA Bauru.</p>
+    </div>
+    <div class="section-img">Foto: cantinho de brinquedos</div>
+  </section>
+
+  <!-- PRIVACY BANNER -->
+  <div class="privacy-banner">
+    <div class="privacy-box">
+      <strong>Importante:</strong> aqui nós registramos todos os detalhes do seu filho para você viver a melhor experiência possível. No site, não mostramos os rostinhos das crianças — é nosso compromisso com a privacidade e o método.
+    </div>
+  </div>
+
+  <!-- ACCESS CARDS -->
+  <section class="access-cards">
+    <a href="https://app.crescidinhosfoto.com.br/" class="access-card">
+      <div class="card-icon icon-phone"></div>
+      <div class="card-label">App Crescidinhos</div>
+      <div class="card-desc">Entre no app, se cadastre e marque seu horário.</div>
+    </a>
+
+    <a href="https://wa.me/5514996845521" class="access-card">
+      <div class="card-icon icon-whatsapp"></div>
+      <div class="card-label">WhatsApp</div>
+      <div class="card-desc">Nos chame para tirar sua dúvida.</div>
+    </a>
+
+    <a href="#" class="access-card">
+      <div class="card-icon icon-natal"></div>
+      <div class="card-label">Natal</div>
+      <div class="card-desc">Nosso lote de Natal chegou! Garanta seu ingresso.</div>
+    </a>
+
+    <a href="#" class="access-card">
+      <div class="card-icon icon-search"></div>
+      <div class="card-label">Procure por tema</div>
+      <div class="card-desc">Veja como já montamos ensaios semelhantes.</div>
+    </a>
+
+    <a href="#" class="access-card">
+      <div class="card-icon icon-video"></div>
+      <div class="card-label">Vídeos explicativos</div>
+      <div class="card-desc">Assista e entenda como é feito cada serviço.</div>
+    </a>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>Fotografo crianças típicas e atípicas em Bauru/SP.</div>
+  <div>Parceria Família TEA Bauru.</div>
+  <div>Bauru/SP · <a href="mailto:crescidinhosfoto@gmail.com">crescidinhosfoto@gmail.com</a> · <a href="https://instagram.com/thaisdesafotografia">@thaisdesafotografia</a></div>
+  <div style="margin-top: 4px;"><a href="#">Privacidade</a></div>
+</footer>
+
+<script>
+  function switchTab(tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.tabs-content').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+    // Show selected tab
+    document.getElementById(tabName).classList.remove('hidden');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nossos Serviços</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@600;700&family=Lato:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Lato", sans-serif; background: #fff; color: #333; }
+    
+    header { background: #D9A7B4; color: white; padding: 2rem; text-align: center; }
+    header h1 { font-size: 2.5rem; font-family: "Cormorant", serif; margin-bottom: 0.5rem; }
+    header p { font-size: 1.1rem; }
+
+    .hero { background: linear-gradient(135deg, #EDD5DF 0%, white 100%); padding: 3rem 2rem; text-align: center; }
+    .hero h2 { font-size: 2rem; font-family: "Cormorant", serif; color: #8B5A6F; margin-bottom: 1rem; }
+    .hero p { font-size: 1rem; max-width: 700px; margin: 0 auto; line-height: 1.8; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+    section { padding: 3rem 0; }
+
+    .servicos { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .servico { background: white; border: 2px solid #D9A7B4; border-radius: 12px; padding: 1.5rem; text-align: center; transition: all 0.3s; }
+    .servico:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(217, 167, 180, 0.2); }
+    
+    .servico h3 { color: #D9A7B4; margin-bottom: 0.5rem; font-family: "Cormorant", serif; font-size: 1.3rem; }
+    .servico .preco { font-size: 1.5rem; font-weight: 700; color: #D9A7B4; margin: 1rem 0; }
+    .servico p { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
+
+    .btn { display: inline-block; background: #D9A7B4; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+    .btn:hover { background: #8B5A6F; }
+
+    h2 { font-size: 1.8rem; font-family: "Cormorant", serif; color: #8B5A6F; margin-bottom: 1rem; }
+    p { line-height: 1.7; margin-bottom: 1.5rem; }
+
+    section:nth-child(even) { background: #EDD5DF; }
+
+    .cta { background: #D9A7B4; color: white; padding: 2rem; border-radius: 12px; text-align: center; margin: 2rem 0; }
+    .cta h2 { color: white; }
+    .cta a { background: white; color: #D9A7B4; }
+
+    footer { background: #333; color: #ccc; padding: 2rem; text-align: center; }
+    footer a { color: #D9A7B4; }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      .hero h2 { font-size: 1.5rem; }
+      .servicos { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Nossos Serviços</h1>
+  <p>Ensaios infantis atípicos — sem crises, com método</p>
+</header>
+
+<section class="hero">
+  <h2>Sou mãe / família</h2>
+  <p>Quero agendar um ensaio</p>
+</section>
+
+<div class="container">
+  <p style="font-size: 1.05rem; background: #EDD5DF; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; line-height: 1.8;">
+    <strong>Ensaio sem crise e sem "sorri pra foto" forçado, no tempo da sua criança.</strong> Estúdio em Bauru, preparado para quem precisa de menos estímulo.<br>
+    <strong>Nosso trabalho é utilizado para TODOS os tipos de crianças — atípicas e típicas também!</strong>
+  </p>
+
+  <section>
+    <h2>Acompanhamentos Mensais</h2>
+    <div class="servicos">
+      <div class="servico">
+        <h3>Chamego</h3>
+        <p class="preco">R$ 160-230</p>
+        <p>35 fotos · 1h · Estúdio</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+      <div class="servico">
+        <h3>Afeto</h3>
+        <p class="preco">R$ 180-280</p>
+        <p>55 fotos · 1h · Estúdio</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Gestante</h2>
+    <div class="servicos">
+      <div class="servico">
+        <h3>Estúdio Life</h3>
+        <p class="preco">R$ 380</p>
+        <p>20 fotos · 2h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+      <div class="servico">
+        <h3>Estúdio Plus</h3>
+        <p class="preco">R$ 480</p>
+        <p>30 fotos · 2h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+      <div class="servico">
+        <h3>Externa</h3>
+        <p class="preco">R$ 580</p>
+        <p>50 fotos · 2h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Newborn</h2>
+    <div class="servicos">
+      <div class="servico">
+        <h3>Sessão Newborn</h3>
+        <p class="preco">R$ 480</p>
+        <p>20 fotos editadas · 3h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Infantil Avulso</h2>
+    <div class="servicos">
+      <div class="servico">
+        <h3>Ensaio One</h3>
+        <p class="preco">R$ 180</p>
+        <p>40 fotos · 1h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+      <div class="servico">
+        <h3>Ensaio Duo</h3>
+        <p class="preco">R$ 280</p>
+        <p>60 fotos · 1h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+      <div class="servico">
+        <h3>Smash Básico</h3>
+        <p class="preco">R$ 380</p>
+        <p>60 fotos · 1h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+      <div class="servico">
+        <h3>Smash Completo</h3>
+        <p class="preco">R$ 620</p>
+        <p>70+ fotos · 1h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Família</h2>
+    <div class="servicos">
+      <div class="servico">
+        <h3>Estúdio Life</h3>
+        <p class="preco">R$ 380</p>
+        <p>20 fotos · 2h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+      <div class="servico">
+        <h3>Estúdio Plus</h3>
+        <p class="preco">R$ 480</p>
+        <p>30 fotos · 2h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+      <div class="servico">
+        <h3>Externa</h3>
+        <p class="preco">R$ 420</p>
+        <p>40 fotos · 2h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Eventos</h2>
+    <div class="servicos">
+      <div class="servico">
+        <h3>Batizado / Chá</h3>
+        <p class="preco">R$ 280-360</p>
+        <p>1h30 a 2h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+      <div class="servico">
+        <h3>Aniversário</h3>
+        <p class="preco">R$ 450-580</p>
+        <p>3h a 4h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+      <div class="servico">
+        <h3>15 Anos</h3>
+        <p class="preco">R$ 1.650</p>
+        <p>6h</p>
+        <a href="https://app.crescidinhosfoto.com.br" class="btn">Agendar</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>Pronto pra Agendar?</h2>
+    <p>Entre no app, escolha seu serviço e marque o horário</p>
+    <a href="https://app.crescidinhosfoto.com.br" class="btn">Acessar App</a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Crescidinhos Fotografia — Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

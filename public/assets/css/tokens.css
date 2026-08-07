@@ -1,0 +1,27 @@
+/* DESIGN TOKENS */
+:root {
+  --color-crescidinhos-primary: #D9A7B4;
+  --color-crescidinhos-dark: #8B5A6F;
+  --color-crescidinhos-light: #EDD5DF;
+  --color-bob-primary: #4A6270;
+  --color-bob-dark: #2C3E47;
+  --color-bob-accent: #E8AE3B;
+  --color-bob-light: #7A8FA0;
+  --color-white: #FFFFFF;
+  --color-gray-light: #F5F5F5;
+  --color-gray-dark: #333333;
+  --font-crescidinhos-heading: "Cormorant", serif;
+  --font-crescidinhos-body: "Lato", sans-serif;
+  --font-bob-heading: "Baloo 2", sans-serif;
+  --font-bob-body: "Fredoka", sans-serif;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
