@@ -218,12 +218,67 @@
       margin: 0;
     }
 
+    /* ──── PRECO SECTION ──── */
+    .preco-section {
+      width: 100%;
+      max-width: 800px;
+      margin: 48px auto 0;
+      padding: 0 32px;
+      text-align: center;
+    }
+
+    .preco-box {
+      background: #4A6270;
+      color: white;
+      border-radius: 8px;
+      padding: 40px 32px;
+      margin-bottom: 24px;
+    }
+
+    .preco-box .label {
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #B0C4CE;
+      margin-bottom: 8px;
+    }
+
+    .preco-box .valor {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #E8AE3B;
+      margin: 12px 0;
+      font-family: 'Karla', sans-serif;
+    }
+
+    .preco-box .original {
+      font-size: 1.2rem;
+      color: #8A9CA5;
+      text-decoration: line-through;
+      margin-right: 12px;
+    }
+
+    .preco-box .condicao {
+      font-size: 0.9rem;
+      color: #CFE1E9;
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    .preco-details {
+      font-size: 0.95rem;
+      color: #CFE1E9;
+      line-height: 1.8;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
     /* ──── CTA SECTION ──── */
     .cta-section {
       width: 100%;
       max-width: 1240px;
       margin: 0 auto;
-      padding: 36px 32px 64px;
+      padding: 0 32px 64px;
       text-align: center;
     }
 
@@ -231,16 +286,26 @@
       display: inline-block;
       text-decoration: none;
       color: white;
-      background: #3F6E80;
-      padding: 16px 40px;
+      background: #E8AE3B;
+      color: #4A6270;
+      padding: 18px 50px;
       border-radius: 4px;
-      font-size: 13px;
-      letter-spacing: 2px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
       transition: all 0.15s ease;
+      margin-bottom: 16px;
     }
 
     .cta-btn:hover {
-      background: #2C4F5D;
+      background: white;
+      transform: translateY(-2px);
+    }
+
+    .garantia {
+      font-size: 12px;
+      color: #5B5049;
+      margin-top: 12px;
     }
 
     /* ──── FOOTER ──── */
@@ -338,9 +403,26 @@
     </div>
   </section>
 
+  <!-- PREÇO -->
+  <section class="preco-section">
+    <div class="preco-box">
+      <div class="label">Investimento</div>
+      <div class="valor" id="precoDisplay">R$ 697</div>
+      <div class="condicao" id="condicaoDisplay"></div>
+      <div class="preco-details">
+        <div>Acesso vitalício aos 5 módulos + bônus</div>
+        <div>Comunidade privada de alunas</div>
+        <div>Atualizações permanentes do curso</div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-section">
-    <a href="/bob/curso.html" class="cta-btn">CONHECER O CURSO B.O.B</a>
+    <a href="#comprar" class="cta-btn" id="ctaBtn">COMPRAR AGORA</a>
+    <div class="garantia">
+      ✓ Garantia de 7 dias ou seu dinheiro de volta
+    </div>
   </section>
 </div>
 
@@ -351,6 +433,36 @@
   <div>Bauru/SP · <a href="mailto:crescidinhosfoto@gmail.com">crescidinhosfoto@gmail.com</a> · <a href="https://instagram.com/thaisdesafotografia">@thaisdesafotografia</a></div>
   <div style="margin-top: 4px;"><a href="#">Privacidade</a></div>
 </footer>
+
+<script src="../assets/data/config.js"></script>
+<script>
+  // Atualizar preços e CTA dinamicamente
+  if (window.CRESCI && window.CRESCI.curso) {
+    const curso = window.CRESCI.curso;
+
+    // Preço normal
+    document.getElementById('precoDisplay').textContent = `R$ ${curso.precoCheio}`;
+
+    // Mostrar condição QUERO se estiver na janela correta
+    const agora = new Date();
+    const abre = new Date(curso.abre);
+    const fechaCondicao = new Date(abre.getTime() + curso.horasCondicao * 60 * 60 * 1000);
+
+    if (agora >= abre && agora <= fechaCondicao) {
+      document.getElementById('condicaoDisplay').textContent =
+        `Oferta especial: R$ ${curso.precoLista} (primeiras ${curso.horasCondicao}h)`;
+    }
+
+    // Atualizar link CTA quando Hotmart estiver pronto
+    const ctaBtn = document.getElementById('ctaBtn');
+    if (curso.checkout) {
+      ctaBtn.href = curso.checkout;
+    } else {
+      ctaBtn.textContent = 'EM BREVE - PRÉ-REGISTRE AQUI';
+      ctaBtn.href = '/leads-bob.html';
+    }
+  }
+</script>
 
 </body>
 </html>

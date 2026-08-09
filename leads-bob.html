@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista QUERO — O Fantástico Mundo de B.O.B</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(135deg, #4A6270 0%, #2C3E47 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+      background: white;
+      color: #333;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #4A6270;
+      font-family: 'Baloo 2', sans-serif;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      background: #F5F5F5;
+      border-left: 4px solid #E8AE3B;
+      padding: 16px;
+      margin-bottom: 24px;
+      border-radius: 4px;
+    }
+
+    .highlight strong {
+      color: #E8AE3B;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #4A6270;
+      font-size: 0.95rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      border: 2px solid #E0E0E0;
+      border-radius: 4px;
+      padding: 12px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.15s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #E8AE3B;
+      background: #FFFEF9;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: #E8AE3B;
+    }
+
+    .checkbox-label {
+      font-size: 0.9rem;
+      color: #666;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    button {
+      background: #E8AE3B;
+      color: #4A6270;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: 'Fredoka', sans-serif;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover {
+      background: white;
+      box-shadow: 0 4px 12px rgba(232, 174, 59, 0.3);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .success-message {
+      display: none;
+      background: #D4EDDA;
+      color: #155724;
+      padding: 16px;
+      border-radius: 4px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .error-message {
+      display: none;
+      background: #F8D7DA;
+      color: #721C24;
+      padding: 16px;
+      border-radius: 4px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: #999;
+      text-align: center;
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+
+    .footer-text a {
+      color: #E8AE3B;
+      text-decoration: none;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 24px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      header p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🎓 Lista QUERO</h1>
+    <p>Você quer conhecer o Método B.O.B? Deixe seu email e receba as novidades em primeira mão.</p>
+  </header>
+
+  <div class="highlight">
+    <strong>✨ Benefício exclusivo:</strong> Primeiras 48h do lançamento, você tem desconto de R$ 200 na inscrição.
+  </div>
+
+  <div class="success-message" id="successMessage">
+    ✅ Pronto! Você está na lista. Fique de olho no seu email — em breve vem coisa boa!
+  </div>
+
+  <div class="error-message" id="errorMessage">
+    Oops! Algo deu errado. Tenta novamente ou manda um email pra <a href="mailto:crescidinhosfoto@gmail.com" style="color: inherit;">crescidinhosfoto@gmail.com</a>
+  </div>
+
+  <form id="leadForm">
+    <div class="form-group">
+      <label for="nome">Seu nome</label>
+      <input type="text" id="nome" name="nome" placeholder="Como você se chama?" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Seu email</label>
+      <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+    </div>
+
+    <div class="form-group">
+      <label for="instagram">Seu Instagram (opcional)</label>
+      <input type="text" id="instagram" name="instagram" placeholder="@seu_perfil">
+    </div>
+
+    <div class="form-group">
+      <label for="message">Por que quer aprender o Método B.O.B? (opcional)</label>
+      <textarea id="message" name="message" placeholder="Conta um pouco sobre você..."></textarea>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="termos" name="termos" required>
+      <label for="termos" class="checkbox-label">
+        Concordo com a <a href="/privacidade.html" style="color: #E8AE3B;">política de privacidade</a>
+      </label>
+    </div>
+
+    <button type="submit">ENTRAR NA LISTA</button>
+  </form>
+
+  <div class="footer-text">
+    Não enviamos SPAM, só notícias do curso. Você pode se desinscrever quando quiser.
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('leadForm');
+  const successMsg = document.getElementById('successMessage');
+  const errorMsg = document.getElementById('errorMessage');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Coletar dados
+    const formData = new FormData(form);
+    const data = {
+      nome: formData.get('nome'),
+      email: formData.get('email'),
+      instagram: formData.get('instagram'),
+      message: formData.get('message'),
+      data: new Date().toISOString(),
+    };
+
+    try {
+      // Placeholder: quando a API de leads estiver pronta, enviar pra lá
+      // Por enquanto, salvar em localStorage como demo
+      const leads = JSON.parse(localStorage.getItem('leads_bob') || '[]');
+      leads.push(data);
+      localStorage.setItem('leads_bob', JSON.stringify(leads));
+
+      // Mostrar sucesso
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+      errorMsg.style.display = 'none';
+
+      // Log para Thais verificar (remover antes de ir pro ar)
+      console.log('Lead capturado:', data);
+    } catch (err) {
+      console.error('Erro:', err);
+      errorMsg.style.display = 'block';
+      successMsg.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
