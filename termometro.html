@@ -431,8 +431,15 @@
     </div>
 
     <div class="email-form">
-      <label for="resultEmail">Quer receber o curso?</label>
+      <label for="resultNome">Seu nome</label>
+      <input type="text" id="resultNome" placeholder="Como você se chama?" required>
+
+      <label for="resultWhatsapp">WhatsApp (com DDD)</label>
+      <input type="text" id="resultWhatsapp" placeholder="(14) 99684-5521" required>
+
+      <label for="resultEmail">Email</label>
       <input type="email" id="resultEmail" placeholder="seu@email.com" required>
+
       <button onclick="saveResult()">Entrar na Lista QUERO</button>
       <div class="success-message" id="successMsg">✅ Pronto! Você está na lista 🎉</div>
     </div>
@@ -756,17 +763,22 @@ function showResult() {
 }
 
 function saveResult() {
+  const nome = document.getElementById('resultNome').value;
+  const whatsapp = document.getElementById('resultWhatsapp').value;
   const email = document.getElementById('resultEmail').value;
-  if (!email) {
-    alert('Por favor, preencha seu email');
+
+  if (!nome || !whatsapp || !email) {
+    alert('Por favor, preencha todos os campos');
     return;
   }
 
   const total = answers.reduce((a, b) => a + b, 0);
   const data = {
-    nome: 'Fotografa - Termômetro',
+    nome: nome,
+    whatsapp: whatsapp,
     email: email,
     score: total,
+    resultado: total <= 12 ? '0-12' : total <= 22 ? '13-22' : total <= 31 ? '23-31' : '32-40',
     data: new Date().toISOString(),
   };
 
@@ -775,8 +787,9 @@ function saveResult() {
   leads.push(data);
   localStorage.setItem('leads_bob', JSON.stringify(leads));
 
-  // Mostrar sucesso
-  document.getElementById('resultEmail').style.display = 'none';
+  // Mostrar sucesso e esconder formulário
+  document.querySelectorAll('.email-form input').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.email-form label').forEach(el => el.style.display = 'none');
   document.querySelector('.email-form button').style.display = 'none';
   document.getElementById('successMsg').style.display = 'block';
 
