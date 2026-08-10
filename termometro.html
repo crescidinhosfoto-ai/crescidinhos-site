@@ -699,6 +699,9 @@ function updateProgress() {
   const percent = (answered / 20) * 100;
   document.getElementById('progressFill').style.width = percent + '%';
 
+  // Atualizar botão Próxima imediatamente
+  updateNavButtons();
+
   if (answered === 20) {
     showResult();
   }
