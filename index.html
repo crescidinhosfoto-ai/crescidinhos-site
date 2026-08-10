@@ -140,7 +140,7 @@
     .entrance-card-img {
       border: 1px solid #C9A24B;
       border-radius: 4px;
-      padding: 6px;
+      padding: 0;
       background: white;
       aspect-ratio: 1 / 1.15;
       display: flex;
@@ -148,7 +148,14 @@
       justify-content: center;
       color: #8A8378;
       font-size: 12px;
-      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .entrance-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .entrance-card-text {
@@ -311,7 +318,7 @@
 <!-- HEADER -->
 <header>
   <div class="header-logo-left">
-    <img src="assets/images/comum/crescidinhoslogo200.png" alt="Crescidinhos" style="width: 80px; height: auto;">
+    <img src="assets/images/comum/crescidinhoslogo200.png" alt="Crescidinhos" style="width: 120px; height: auto; object-fit: contain;">
   </div>
 
   <div class="header-title">
@@ -322,7 +329,7 @@
   </div>
 
   <div class="header-logo-right">
-    <img src="assets/images/comum/BOBlogo200.png" alt="B.O.B" style="width: 80px; height: auto;">
+    <img src="assets/images/comum/BOBlogo200.png" alt="B.O.B" style="width: 120px; height: auto; object-fit: contain;">
   </div>
 </header>
 
@@ -330,13 +337,17 @@
 <section class="entrance-section">
   <a href="cliente/" class="entrance-card">
     <div class="entrance-card-eyebrow">CLIENTE</div>
-    <img src="assets/images/cliente/cliente.png" alt="Área Cliente" style="width: 100%; height: auto; border: 1px solid #C9A24B; border-radius: 4px; padding: 6px; background: white;">
+    <div class="entrance-card-img">
+      <img src="assets/images/cliente/cliente.png" alt="Área Cliente">
+    </div>
     <p class="entrance-card-text">Uma área para você conhecer mais sobre nosso espaço, e marcar seu ensaio ou evento com mais tranquilidade.</p>
   </a>
 
   <a href="aluno/" class="entrance-card">
     <div class="entrance-card-eyebrow">ALUNO</div>
-    <img src="assets/images/aluno/aluno.png" alt="Área Aluno" style="width: 100%; height: auto; border: 1px solid #C9A24B; border-radius: 4px; padding: 6px; background: white;">
+    <div class="entrance-card-img">
+      <img src="assets/images/aluno/aluno.png" alt="Área Aluno">
+    </div>
     <p class="entrance-card-text">Uma área para você conhecer mais sobre nossos cursos e materiais.</p>
   </a>
 </section>
