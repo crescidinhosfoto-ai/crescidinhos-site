@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termômetro do Ensaio Inclusivo — B.O.B</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(135deg, #4A6270 0%, #2C3E47 100%);
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-top: 20px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-family: 'Baloo 2', sans-serif;
+      color: #E8AE3B;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #B0C4CE;
+      line-height: 1.6;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #E8AE3B;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-container {
+      background: white;
+      color: #333;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .question-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .question-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: #E8AE3B;
+      color: #4A6270;
+      border-radius: 50%;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .question-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #4A6270;
+    }
+
+    .question-text {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .options {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .option {
+      flex: 1;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    .option input[type="radio"] {
+      display: none;
+    }
+
+    .option label {
+      display: block;
+      padding: 12px 16px;
+      background: #F5F5F5;
+      border: 2px solid #E0E0E0;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .option label:hover {
+      border-color: #E8AE3B;
+      background: #FFFEF9;
+    }
+
+    .option input[type="radio"]:checked + label {
+      background: #E8AE3B;
+      color: #4A6270;
+      border-color: #E8AE3B;
+    }
+
+    .blocos-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+    }
+
+    .bloco-tab {
+      padding: 10px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 0.85rem;
+      transition: all 0.15s ease;
+      font-weight: 600;
+    }
+
+    .bloco-tab:hover {
+      border-color: #E8AE3B;
+    }
+
+    .bloco-tab.active {
+      background: #E8AE3B;
+      color: #4A6270;
+      border-color: #E8AE3B;
+    }
+
+    .question-container.hidden {
+      display: none;
+    }
+
+    .result-screen {
+      background: white;
+      color: #333;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: none;
+    }
+
+    .result-screen.show {
+      display: block;
+    }
+
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #E8AE3B 0%, #C4932E 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 12px rgba(232, 174, 59, 0.3);
+    }
+
+    .score-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+      font-family: 'Baloo 2', sans-serif;
+    }
+
+    .result-title {
+      font-size: 1.8rem;
+      color: #4A6270;
+      margin-bottom: 12px;
+      font-family: 'Baloo 2', sans-serif;
+    }
+
+    .result-desc {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .result-actions {
+      background: #F5F5F5;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .result-actions h3 {
+      color: #E8AE3B;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .result-actions ul {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .result-actions li {
+      padding: 8px 0;
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .result-actions li:before {
+      content: "•";
+      color: #E8AE3B;
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .email-form {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 2px solid #E0E0E0;
+    }
+
+    .email-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #4A6270;
+    }
+
+    .email-form input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #E0E0E0;
+      border-radius: 4px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      transition: border-color 0.15s ease;
+    }
+
+    .email-form input:focus {
+      outline: none;
+      border-color: #E8AE3B;
+      background: #FFFEF9;
+    }
+
+    .email-form button {
+      width: 100%;
+      background: #E8AE3B;
+      color: #4A6270;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: 'Fredoka', sans-serif;
+      transition: all 0.15s ease;
+    }
+
+    .email-form button:hover {
+      background: white;
+      box-shadow: 0 4px 12px rgba(232, 174, 59, 0.3);
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+      justify-content: center;
+    }
+
+    button.nav-btn {
+      padding: 10px 24px;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Fredoka', sans-serif;
+      transition: all 0.15s ease;
+    }
+
+    button.prev-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    button.next-btn {
+      background: #E8AE3B;
+      color: #4A6270;
+    }
+
+    button.nav-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    button.nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .success-message {
+      display: none;
+      background: #D4EDDA;
+      color: #155724;
+      padding: 16px;
+      border-radius: 4px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      .question-container { padding: 20px; }
+      .blocos-nav { grid-template-columns: repeat(2, 1fr); }
+      .options { flex-direction: column; }
+      .option { min-width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Termômetro do Ensaio Inclusivo</h1>
+    <p>20 perguntas pra descobrir onde você está no caminho pra fotografar crianças atípicas sem crise</p>
+  </header>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="blocos-nav" id="blocoNav"></div>
+
+  <div id="questionsContainer"></div>
+
+  <div class="result-screen" id="resultScreen">
+    <div class="score-circle">
+      <div class="score-number" id="finalScore">0</div>
+    </div>
+    <h2 class="result-title" id="resultTitle">Seu resultado</h2>
+    <p class="result-desc" id="resultDesc"></p>
+
+    <div class="result-actions" id="resultActions"></div>
+
+    <div class="email-form">
+      <label for="resultEmail">Quer receber o curso?</label>
+      <input type="email" id="resultEmail" placeholder="seu@email.com" required>
+      <button onclick="saveResult()">Entrar na Lista QUERO</button>
+      <div class="success-message" id="successMsg">✅ Pronto! Você está na lista 🎉</div>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="nav-btn prev-btn" onclick="prevQuestion()" id="prevBtn">← Anterior</button>
+    <button class="nav-btn next-btn" onclick="nextQuestion()" id="nextBtn">Próxima →</button>
+  </div>
+</div>
+
+<script src="../assets/data/config.js"></script>
+<script>
+const questions = [
+  // BLOCO 01 - Antes do ensaio
+  {
+    bloco: 1,
+    number: 1,
+    title: "Antes do ensaio",
+    text: "Meu formulário de agendamento pergunta se a criança é atípica — e eu leio essa resposta antes de mandar o orçamento."
+  },
+  {
+    bloco: 1,
+    number: 2,
+    title: "Antes do ensaio",
+    text: "Quando a resposta é sim, eu envio uma anamnese específica: diagnóstico, há quanto tempo sabe, quais terapias faz, medicação, estereotipias, sensibilidades e o que costuma acalmar."
+  },
+  {
+    bloco: 1,
+    number: 3,
+    title: "Antes do ensaio",
+    text: "Eu pesquiso o diagnóstico e os remédios citados antes do dia, e anoto por escrito o que preciso evitar naquele ensaio."
+  },
+  {
+    bloco: 1,
+    number: 4,
+    title: "Antes do ensaio",
+    text: "Eu envio à família um material de antecipação — vídeo ou história social — mostrando meu rosto, o caminho, a sala e o que vai acontecer, com orientação de assistir durante alguns dias."
+  },
+  {
+    bloco: 1,
+    number: 5,
+    title: "Antes do ensaio",
+    text: "Eu escolho o horário a partir da rotina da criança — soneca, medicação, terapia, escola — e não a partir do buraco livre na minha agenda."
+  },
+
+  // BLOCO 02 - O ambiente
+  {
+    bloco: 2,
+    number: 6,
+    title: "O ambiente",
+    text: "Os props ficam guardados. Só sai o que foi escolhido para aquela criança, a partir do que a mãe respondeu."
+  },
+  {
+    bloco: 2,
+    number: 7,
+    title: "O ambiente",
+    text: "Minha luz principal é contínua e suave. O flash não é o padrão, e eu sei silenciar o disparo da câmera."
+  },
+  {
+    bloco: 2,
+    number: 8,
+    title: "O ambiente",
+    text: "Existe uma zona de descanso no espaço: parede neutra, luz baixa, silêncio, algo para sentar, deitar ou se cobrir."
+  },
+  {
+    bloco: 2,
+    number: 9,
+    title: "O ambiente",
+    text: "O estúdio não tem cheiro forte — perfume, vela, produto de limpeza — e eu controlo o som de fundo, incluindo ventilador e ar-condicionado."
+  },
+  {
+    bloco: 2,
+    number: 10,
+    title: "O ambiente",
+    text: "Eu tenho caixas sensoriais montadas por perfil, prontas antes de a família chegar."
+  },
+
+  // BLOCO 03 - A condução
+  {
+    bloco: 3,
+    number: 11,
+    title: "A condução",
+    text: "Eu me apresento à criança na altura dela e dou tempo de adaptação antes do primeiro clique — mesmo que isso consuma vinte minutos do ensaio."
+  },
+  {
+    bloco: 3,
+    number: 12,
+    title: "A condução",
+    text: "Eu uso um temporizador visível, combino o tempo com a criança no começo e respeito quando ele acaba."
+  },
+  {
+    bloco: 3,
+    number: 13,
+    title: "A condução",
+    text: "Eu uso um quadro de incentivo com as etapas e as combinações: pode pedir pausa, pode apagar a luz, pode tirar a brincadeira."
+  },
+  {
+    bloco: 3,
+    number: 14,
+    title: "A condução",
+    text: "Eu ofereço escolhas no lugar de comandos — \"prefere começado sentado ou de pé?\" em vez de \"senta aqui\" e \"sorri para a foto\"."
+  },
+  {
+    bloco: 3,
+    number: 15,
+    title: "A condução",
+    text: "Eu sei diferenciar birra de desregulação e tenho o que fazer nos primeiros noventa segundos de uma crise: baixar estímulo, não invalidar, não insistir."
+  },
+
+  // BLOCO 04 - Depois, e o negócio
+  {
+    bloco: 4,
+    number: 16,
+    title: "Depois, e o negócio",
+    text: "Eu encerro o ensaio com a criança: ela diz se gostou, fecha a última conquista do quadro e recebe o reconhecimento."
+  },
+  {
+    bloco: 4,
+    number: 17,
+    title: "Depois, e o negócio",
+    text: "Eu volto a falar com a família depois do ensaio para saber como a criança ficou no resto do dia — não só para entregar as fotos."
+  },
+  {
+    bloco: 4,
+    number: 18,
+    title: "Depois, e o negócio",
+    text: "Eu tenho autorização de imagem por escrito, com uma pergunta separada sobre publicar o ensaio de uma criança atípica."
+  },
+  {
+    bloco: 4,
+    number: 19,
+    title: "Depois, e o negócio",
+    text: "Minha comunicação mostra meu processo de adaptação, não a limitação da criança. Eu falo de acolhimento — não de superação, nem de pena."
+  },
+  {
+    bloco: 4,
+    number: 20,
+    title: "Depois, e o negócio",
+    text: "Meu preço considera o tempo real desse atendimento — anamnese, pesquisa, antecipação, montagem por perfil, ensaio mais longo — e eu sei explicar isso à família sem me descumprir."
+  }
+];
+
+const results = {
+  "0-12": {
+    title: "Porta aberta, caminho fechado",
+    desc: "Você aceita a criança atípica na agenda — e isso já te coloca à frente de muita gente. Mas hoje quem decide como o ensaio vai terminar é o acaso: o humor da criança, o dia, a sorte. Quando dá errado, sobre a frase 'ela não colaborou'. Não é verdade. O que faltou foi informação antes e estrutura durante.",
+    actions: [
+      "Coloque uma pergunta no seu formulário de agendamento: 'seu filho é atípico?'. Uma linha. Ela muda o resto.",
+      "Monte a anamnese e envie para o próximo caso que responder sim.",
+      "Antes do próximo ensaio, guarde metade dos props. Deixe fora só o que foi escolhido para aquela criança, a partir do que a mãe respondeu."
+    ]
+  },
+  "13-22": {
+    title: "Boa intenção, sem sistema",
+    desc: "Você já faz várias coisas certas — mas por intuição, e no dia em que você lembra. O resultado oscila: um ensaio lindo, outro difícil, e você não sabe explicar a diferença. A diferença quase sempre está no que você fez ou deixou de fazer, na semana anterior.",
+    actions: [
+      "Transforme o que você faz de vez em quando numa rotina escrita. Um checklist de três linhas já é um sistema.",
+      "Adote a antecipação: um vídeo seu de dois minutos mostrando a sala e o caminho, enviado uma semana antes.",
+      "Coloque um temporizador visual no estúdio e combine o tempo com a criança logo na chegada."
+    ]
+  },
+  "23-31": {
+    title: "Adaptação em construção",
+    desc: "Existe um método aí dentro, e ele funciona. O que ainda falta é o que acontece nas bordas: a crise que aparece do nada, o encerramento, o pós-ensaio e a forma como você conta esse trabalho para o mundo. É aqui que o atendimento vira reputação — ou não vira.",
+    actions: [
+      "Escreva o seu protocolo de crise: o que você faz nos primeiros noventa segundos, antes de pensar em foto.",
+      "Feche todo ensaio com a criança dizendo se gostou, e retome a conversa com a família no dia seguinte.",
+      "Revise seus últimos dez posts: eles falam do seu processo ou da limitação da criança?"
+    ]
+  },
+  "32-40": {
+    title: "Ensaio inclusivo consolidado",
+    desc: "Seu processo está de pé e a sua agenda provavelmente já mostra isso. O risco agora é outro: sustentar sozinha. Método que não está escrito não é delegável, não é ensinável e não sobrevive a um mês corrido. E preço que não acompanha a entrega vira cansaço disfarçado de vocação.",
+    actions: [
+      "Documente o seu passo a passo — o que você faz hoje já é um método, mesmo que ninguém tenha dado nome a ele.",
+      "Reveja o preço olhando para o tempo real: anamnese, pesquisa, antecipação, montagem por perfil, ensaio mais longo, pós.",
+      "Comece a mostrar os bastidores da adaptação. É o que faz a mãe atípica escolher você antes de perguntar valor."
+    ]
+  }
+};
+
+let currentQuestion = 0;
+let answers = new Array(20).fill(null);
+
+function init() {
+  renderBlocoNav();
+  renderQuestion();
+  updateProgress();
+}
+
+function renderBlocoNav() {
+  const nav = document.getElementById('blocoNav');
+  nav.innerHTML = '';
+  for (let i = 1; i <= 4; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'bloco-tab';
+    btn.textContent = `Bloco ${i}`;
+    btn.onclick = () => goToBloco(i);
+    nav.appendChild(btn);
+  }
+  updateBlocoNav();
+}
+
+function updateBlocoNav() {
+  const currentBloco = Math.floor(currentQuestion / 5) + 1;
+  document.querySelectorAll('.bloco-tab').forEach((btn, i) => {
+    btn.classList.toggle('active', i + 1 === currentBloco);
+  });
+}
+
+function renderQuestion() {
+  const container = document.getElementById('questionsContainer');
+  container.innerHTML = '';
+
+  const q = questions[currentQuestion];
+  const div = document.createElement('div');
+  div.className = 'question-container';
+
+  div.innerHTML = `
+    <div class="question-header">
+      <div class="question-number">${q.number}</div>
+      <div class="question-title">${q.title}</div>
+    </div>
+    <p class="question-text">${q.text}</p>
+    <div class="options">
+      <div class="option">
+        <input type="radio" id="opt0" name="answer" value="0" ${answers[currentQuestion] === 0 ? 'checked' : ''}>
+        <label for="opt0">Ainda não faço</label>
+      </div>
+      <div class="option">
+        <input type="radio" id="opt1" name="answer" value="1" ${answers[currentQuestion] === 1 ? 'checked' : ''}>
+        <label for="opt1">Faço às vezes</label>
+      </div>
+      <div class="option">
+        <input type="radio" id="opt2" name="answer" value="2" ${answers[currentQuestion] === 2 ? 'checked' : ''}>
+        <label for="opt2">Faço sempre</label>
+      </div>
+    </div>
+  `;
+
+  container.appendChild(div);
+
+  document.querySelectorAll('input[name="answer"]').forEach(input => {
+    input.addEventListener('change', (e) => {
+      answers[currentQuestion] = parseInt(e.target.value);
+      updateProgress();
+    });
+  });
+
+  updateNavButtons();
+  updateBlocoNav();
+}
+
+function updateProgress() {
+  const answered = answers.filter(a => a !== null).length;
+  const percent = (answered / 20) * 100;
+  document.getElementById('progressFill').style.width = percent + '%';
+
+  if (answered === 20) {
+    showResult();
+  }
+}
+
+function updateNavButtons() {
+  document.getElementById('prevBtn').disabled = currentQuestion === 0;
+  document.getElementById('nextBtn').disabled = answers[currentQuestion] === null;
+}
+
+function nextQuestion() {
+  if (answers[currentQuestion] !== null && currentQuestion < 19) {
+    currentQuestion++;
+    renderQuestion();
+    window.scrollTo(0, 0);
+  }
+}
+
+function prevQuestion() {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    renderQuestion();
+    window.scrollTo(0, 0);
+  }
+}
+
+function goToBloco(bloco) {
+  currentQuestion = (bloco - 1) * 5;
+  renderQuestion();
+  window.scrollTo(0, 0);
+}
+
+function showResult() {
+  const total = answers.reduce((a, b) => a + b, 0);
+  let range, resultData;
+
+  if (total <= 12) range = "0-12";
+  else if (total <= 22) range = "13-22";
+  else if (total <= 31) range = "23-31";
+  else range = "32-40";
+
+  resultData = results[range];
+
+  document.getElementById('questionsContainer').innerHTML = '';
+  document.getElementById('blocoNav').style.display = 'none';
+  document.querySelector('.nav-buttons').style.display = 'none';
+
+  const resultScreen = document.getElementById('resultScreen');
+  document.getElementById('finalScore').textContent = total;
+  document.getElementById('resultTitle').textContent = resultData.title;
+  document.getElementById('resultDesc').textContent = resultData.desc;
+
+  const actions = document.getElementById('resultActions');
+  actions.innerHTML = '<h3>COMECE POR AQUI</h3><ul>';
+  resultData.actions.forEach(action => {
+    actions.innerHTML += `<li>${action}</li>`;
+  });
+  actions.innerHTML += '</ul>';
+
+  resultScreen.classList.add('show');
+  window.scrollTo(0, 0);
+}
+
+function saveResult() {
+  const email = document.getElementById('resultEmail').value;
+  if (!email) {
+    alert('Por favor, preencha seu email');
+    return;
+  }
+
+  const total = answers.reduce((a, b) => a + b, 0);
+  const data = {
+    nome: 'Fotografa - Termômetro',
+    email: email,
+    score: total,
+    data: new Date().toISOString(),
+  };
+
+  // Salvar em localStorage
+  const leads = JSON.parse(localStorage.getItem('leads_bob') || '[]');
+  leads.push(data);
+  localStorage.setItem('leads_bob', JSON.stringify(leads));
+
+  // Mostrar sucesso
+  document.getElementById('resultEmail').style.display = 'none';
+  document.querySelector('.email-form button').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+
+  console.log('Lead capturado:', data);
+}
+
+// Iniciar
+init();
+</script>
+
+</body>
+</html>
