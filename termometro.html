@@ -407,11 +407,30 @@
     <p>20 perguntas pra descobrir onde você está no caminho pra fotografar crianças atípicas sem crise</p>
   </header>
 
-  <div class="progress-bar">
+  <!-- FORMULÁRIO INICIAL -->
+  <div class="result-screen" id="formScreen">
+    <h2 style="text-align: center; margin-bottom: 20px; font-family: 'Baloo 2', sans-serif; font-size: 24px; color: #4A6270;">Vamos começar?</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 30px;">Preencha seus dados para que a gente conheça você melhor:</p>
+
+    <div class="email-form">
+      <label for="inicialNome">Seu nome</label>
+      <input type="text" id="inicialNome" placeholder="Como você se chama?" required>
+
+      <label for="inicialWhatsapp">WhatsApp (com DDD)</label>
+      <input type="text" id="inicialWhatsapp" placeholder="(14) 99684-5521" required>
+
+      <label for="inicialEmail">Email</label>
+      <input type="email" id="inicialEmail" placeholder="seu@email.com" required>
+
+      <button onclick="startQuestions()">Começar o Termômetro</button>
+    </div>
+  </div>
+
+  <div class="progress-bar" id="progressBarContainer" style="display: none;">
     <div class="progress-fill" id="progressFill"></div>
   </div>
 
-  <div class="blocos-nav" id="blocoNav"></div>
+  <div class="blocos-nav" id="blocoNav" style="display: none;"></div>
 
   <div id="questionsContainer"></div>
 
@@ -429,18 +448,8 @@
 
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 30px;" id="faixas"></div>
 
-    <div class="email-form">
-      <label for="resultNome">Seu nome</label>
-      <input type="text" id="resultNome" placeholder="Como você se chama?" required>
-
-      <label for="resultWhatsapp">WhatsApp (com DDD)</label>
-      <input type="text" id="resultWhatsapp" placeholder="(14) 99684-5521" required>
-
-      <label for="resultEmail">Email</label>
-      <input type="email" id="resultEmail" placeholder="seu@email.com" required>
-
-      <button onclick="saveResult()">Ver Meu Resultado</button>
-      <div class="success-message" id="successMsg">✅ Carregando seu resultado...</div>
+    <div style="text-align: center; margin-top: 30px;">
+      <button onclick="saveSummaryAndShowResult()" style="display: inline-block; background: #E8AE3B; color: #4A6270; padding: 14px 40px; border: none; border-radius: 4px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: 'Fredoka', sans-serif; transition: all 0.15s ease;">Ver Meu Resultado</button>
     </div>
   </div>
 
@@ -640,11 +649,36 @@ const results = {
 
 let currentQuestion = 0;
 let answers = new Array(20).fill(null);
+let fotografoData = { nome: '', whatsapp: '', email: '' };
 
 function init() {
+  // Mostrar apenas o formulário inicial
+  document.getElementById('formScreen').classList.add('show');
+}
+
+function startQuestions() {
+  const nome = document.getElementById('inicialNome').value;
+  const whatsapp = document.getElementById('inicialWhatsapp').value;
+  const email = document.getElementById('inicialEmail').value;
+
+  if (!nome || !whatsapp || !email) {
+    alert('Por favor, preencha todos os campos');
+    return;
+  }
+
+  // Guardar dados do fotógrafo
+  fotografoData = { nome, whatsapp, email };
+
+  // Esconder formulário e mostrar perguntas
+  document.getElementById('formScreen').classList.remove('show');
+  document.getElementById('progressBarContainer').style.display = 'block';
+  document.getElementById('blocoNav').style.display = 'grid';
+
   renderBlocoNav();
   renderQuestion();
   updateProgress();
+
+  window.scrollTo(0, 0);
 }
 
 function renderBlocoNav() {
@@ -819,21 +853,12 @@ function showFinalResult() {
   window.scrollTo(0, 0);
 }
 
-function saveResult() {
-  const nome = document.getElementById('resultNome').value;
-  const whatsapp = document.getElementById('resultWhatsapp').value;
-  const email = document.getElementById('resultEmail').value;
-
-  if (!nome || !whatsapp || !email) {
-    alert('Por favor, preencha todos os campos');
-    return;
-  }
-
+function saveSummaryAndShowResult() {
   const total = answers.reduce((a, b) => a + b, 0);
   const data = {
-    nome: nome,
-    whatsapp: whatsapp,
-    email: email,
+    nome: fotografoData.nome,
+    whatsapp: fotografoData.whatsapp,
+    email: fotografoData.email,
     score: total,
     resultado: total <= 12 ? '0-12' : total <= 22 ? '13-22' : total <= 31 ? '23-31' : '32-40',
     data: new Date().toISOString(),
