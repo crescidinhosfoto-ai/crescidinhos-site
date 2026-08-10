@@ -415,6 +415,36 @@
 
   <div id="questionsContainer"></div>
 
+  <!-- RESUMO ANTES DE SUBMETER DADOS -->
+  <div class="result-screen" id="summaryScreen">
+    <h2 style="text-align: center; margin-bottom: 20px;">Sua Avaliação</h2>
+
+    <div id="blocoScores" style="margin-bottom: 30px;"></div>
+
+    <div style="background: #4A6270; color: white; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 30px;">
+      <div style="font-size: 12px; letter-spacing: 2px; color: #B0C4CE; margin-bottom: 8px;">TOTAL</div>
+      <div style="font-size: 3rem; font-weight: 700; color: #E8AE3B;" id="totalScore">0</div>
+      <div style="font-size: 14px; color: #B0C4CE; margin-top: 8px;">de 40 pontos</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 30px;" id="faixas"></div>
+
+    <div class="email-form">
+      <label for="resultNome">Seu nome</label>
+      <input type="text" id="resultNome" placeholder="Como você se chama?" required>
+
+      <label for="resultWhatsapp">WhatsApp (com DDD)</label>
+      <input type="text" id="resultWhatsapp" placeholder="(14) 99684-5521" required>
+
+      <label for="resultEmail">Email</label>
+      <input type="email" id="resultEmail" placeholder="seu@email.com" required>
+
+      <button onclick="saveResult()">Ver Meu Resultado</button>
+      <div class="success-message" id="successMsg">✅ Carregando seu resultado...</div>
+    </div>
+  </div>
+
+  <!-- RESULTADO FINAL -->
   <div class="result-screen" id="resultScreen">
     <div class="score-circle">
       <div class="score-number" id="finalScore">0</div>
@@ -428,20 +458,6 @@
       <h3>📚 Conheça o Método B.O.B</h3>
       <p>Formação completa para fotógrafos que querem fotografar com cuidado: brincar, ouvir e brilhar.</p>
       <a href="/aluno/">Ver o curso e e-books</a>
-    </div>
-
-    <div class="email-form">
-      <label for="resultNome">Seu nome</label>
-      <input type="text" id="resultNome" placeholder="Como você se chama?" required>
-
-      <label for="resultWhatsapp">WhatsApp (com DDD)</label>
-      <input type="text" id="resultWhatsapp" placeholder="(14) 99684-5521" required>
-
-      <label for="resultEmail">Email</label>
-      <input type="email" id="resultEmail" placeholder="seu@email.com" required>
-
-      <button onclick="saveResult()">Entrar na Lista QUERO</button>
-      <div class="success-message" id="successMsg">✅ Pronto! Você está na lista 🎉</div>
     </div>
   </div>
 
@@ -736,6 +752,46 @@ function goToBloco(bloco) {
 
 function showResult() {
   const total = answers.reduce((a, b) => a + b, 0);
+
+  document.getElementById('questionsContainer').innerHTML = '';
+  document.getElementById('blocoNav').style.display = 'none';
+  document.querySelector('.nav-buttons').style.display = 'none';
+
+  // Calcular pontos por bloco
+  const blocoScores = [
+    { nome: 'Antes do ensaio', pontos: answers.slice(0, 5).reduce((a, b) => a + b, 0) },
+    { nome: 'O ambiente', pontos: answers.slice(5, 10).reduce((a, b) => a + b, 0) },
+    { nome: 'A condução', pontos: answers.slice(10, 15).reduce((a, b) => a + b, 0) },
+    { nome: 'Depois, e o negócio', pontos: answers.slice(15, 20).reduce((a, b) => a + b, 0) }
+  ];
+
+  // Mostrar resumo com blocos
+  const blocoHTML = blocoScores.map((b, i) => `
+    <div style="background: white; border: 1px solid #E7DCCB; border-radius: 8px; padding: 16px; text-align: center;">
+      <div style="font-size: 14px; color: #5B5049; margin-bottom: 8px;">Bloco ${i+1} · ${b.nome}</div>
+      <div style="font-size: 20px; font-weight: 700; color: #E8AE3B;">${b.pontos}/10</div>
+    </div>
+  `).join('');
+
+  document.getElementById('blocoScores').innerHTML = blocoHTML;
+  document.getElementById('totalScore').textContent = total;
+
+  // Faixas
+  const faixasHTML = `
+    <div style="background: ${total >= 0 && total <= 12 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">0-12</div>
+    <div style="background: ${total >= 13 && total <= 22 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">13-22</div>
+    <div style="background: ${total >= 23 && total <= 31 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">23-31</div>
+    <div style="background: ${total >= 32 && total <= 40 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">32-40</div>
+  `;
+  document.getElementById('faixas').innerHTML = faixasHTML;
+
+  const summaryScreen = document.getElementById('summaryScreen');
+  summaryScreen.classList.add('show');
+  window.scrollTo(0, 0);
+}
+
+function showFinalResult() {
+  const total = answers.reduce((a, b) => a + b, 0);
   let range, resultData;
 
   if (total <= 12) range = "0-12";
@@ -745,11 +801,8 @@ function showResult() {
 
   resultData = results[range];
 
-  document.getElementById('questionsContainer').innerHTML = '';
-  document.getElementById('blocoNav').style.display = 'none';
-  document.querySelector('.nav-buttons').style.display = 'none';
+  document.getElementById('summaryScreen').classList.remove('show');
 
-  const resultScreen = document.getElementById('resultScreen');
   document.getElementById('finalScore').textContent = total;
   document.getElementById('resultTitle').textContent = resultData.title;
   document.getElementById('resultDesc').textContent = resultData.desc;
@@ -761,6 +814,7 @@ function showResult() {
   });
   actions.innerHTML += '</ul>';
 
+  const resultScreen = document.getElementById('resultScreen');
   resultScreen.classList.add('show');
   window.scrollTo(0, 0);
 }
@@ -790,13 +844,10 @@ function saveResult() {
   leads.push(data);
   localStorage.setItem('leads_bob', JSON.stringify(leads));
 
-  // Mostrar sucesso e esconder formulário
-  document.querySelectorAll('.email-form input').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.email-form label').forEach(el => el.style.display = 'none');
-  document.querySelector('.email-form button').style.display = 'none';
-  document.getElementById('successMsg').style.display = 'block';
-
   console.log('Lead capturado:', data);
+
+  // Mostrar resultado final
+  showFinalResult();
 }
 
 // Iniciar
