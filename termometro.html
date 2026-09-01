@@ -4,6 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Termômetro do Ensaio Inclusivo — B.O.B</title>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1042570985223703');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1042570985223703&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
   <style>
@@ -407,22 +426,46 @@
     <p>20 perguntas pra descobrir onde você está no caminho pra fotografar crianças atípicas sem crise</p>
   </header>
 
-  <!-- FORMULÁRIO INICIAL -->
-  <div class="result-screen" id="formScreen">
-    <h2 style="text-align: center; margin-bottom: 20px; font-family: 'Baloo 2', sans-serif; font-size: 24px; color: #4A6270;">Vamos começar?</h2>
-    <p style="text-align: center; color: #666; margin-bottom: 30px;">Preencha seus dados para que a gente conheça você melhor:</p>
+  <!-- TELA INICIAL: APENAS INTRO (SEM FORMULÁRIO) -->
+  <div class="result-screen" id="introScreen">
+    <h2 style="text-align: center; margin-bottom: 20px; font-family: 'Baloo 2', sans-serif; font-size: 24px; color: #4A6270;">Seu estúdio está pronto?</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 30px; line-height: 1.6;">20 perguntas para descobrir onde você está no caminho pra fotografar crianças atípicas sem crise. No fim você descobre o seu nível — e os três primeiros passos.</p>
 
     <div class="email-form">
-      <label for="inicialNome">Seu nome</label>
-      <input type="text" id="inicialNome" placeholder="Como você se chama?" required>
+      <button onclick="startQuestions()" style="background: #E8AE3B; width: 100%;">Começar o Termômetro</button>
+    </div>
+  </div>
 
-      <label for="inicialWhatsapp">WhatsApp (com DDD)</label>
-      <input type="text" id="inicialWhatsapp" placeholder="(14) 99684-5521" required>
+  <!-- FORMULÁRIO DE CAPTURA (DEPOIS DO QUIZ) -->
+  <div class="result-screen" id="captureScreen">
+    <h2 style="text-align: center; margin-bottom: 20px; font-family: 'Baloo 2', sans-serif; font-size: 24px; color: #4A6270;">Seus dados</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 30px;">Preencha para receber seu resultado detalhado por e-mail:</p>
 
-      <label for="inicialEmail">Email</label>
-      <input type="email" id="inicialEmail" placeholder="seu@email.com" required>
+    <div class="email-form">
+      <label for="capturaNome">Seu nome</label>
+      <input type="text" id="capturaNome" placeholder="Como você se chama?" required>
 
-      <button onclick="startQuestions()">Começar o Termômetro</button>
+      <label for="capturaWhatsapp">WhatsApp (com DDD)</label>
+      <input type="tel" inputmode="numeric" id="capturaWhatsapp" placeholder="(14) 99999-9999" maxlength="16" required>
+
+      <label for="capturaEmail">Email</label>
+      <input type="email" id="capturaEmail" placeholder="seu@email.com" required>
+
+      <label for="capturaSegmentacao">Quantos ensaios com crianças atípicas você fez no último ano?</label>
+      <select id="capturaSegmentacao" required style="width: 100%; padding: 12px; border: 2px solid #E0E0E0; border-radius: 4px; font-family: 'Fredoka', sans-serif; font-size: 1rem; margin-bottom: 12px; cursor: pointer;">
+        <option value="">Selecione...</option>
+        <option value="nenhum">Nenhum</option>
+        <option value="1-3">1 a 3</option>
+        <option value="4-10">4 a 10</option>
+        <option value="10+">Mais de 10</option>
+      </select>
+
+      <p style="margin:10px 2px 0;font-size:13px;line-height:1.5;color:#90A0AD;">
+        Você vai receber o seu resultado por e-mail, junto com informações sobre o curso.
+        Não repasso o seu contato para ninguém, e você pode pedir para sair quando quiser.
+      </p>
+
+      <button onclick="submitCaptureFormAndShowSummary()">Ver Meu Resultado</button>
     </div>
   </div>
 
@@ -466,8 +509,12 @@
     <div class="course-box">
       <h3>📚 Conheça o Método B.O.B</h3>
       <p>Formação completa para fotógrafos que querem fotografar com cuidado: brincar, ouvir e brilhar.</p>
-      <a href="/aluno/">Ver o curso e e-books</a>
+      <a href="https://bob.crescidinhosfoto.com.br" target="_blank" rel="noopener">Ver o curso e e-books</a>
     </div>
+
+    <button onclick="restartQuiz()" style="width: 100%; background: rgba(255,255,255,0.2); color: white; border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 4px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: 'Fredoka', sans-serif; transition: all 0.15s ease; margin-top: 20px;">
+      Fazer Novamente
+    </button>
   </div>
 
   <div class="nav-buttons">
@@ -476,15 +523,17 @@
   </div>
 </div>
 
-<script src="../assets/data/config.js"></script>
 <script>
+const SUPABASE_URL = 'https://cguybinoqadzlytcvqzf.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNndXliaW5vcWFkemx5dGN2cXpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MTAyNzgsImV4cCI6MjEwMzA4NjI3OH0.Um6ZzqnoVULbin71DGHk0DlpvEmTI-ckNdLGk4mWa0U';
+
 const questions = [
   // BLOCO 01 - Antes do ensaio
   {
     bloco: 1,
     number: 1,
     title: "Antes do ensaio",
-    text: "Meu formulário de agendamento pergunta se a criança é atípica — e eu leio essa resposta antes de mandar o orçamento."
+    text: "Meu formulário de agendamento pergunta se a criança é atípica."
   },
   {
     bloco: 1,
@@ -502,7 +551,7 @@ const questions = [
     bloco: 1,
     number: 4,
     title: "Antes do ensaio",
-    text: "Eu envio à família um material de antecipação — vídeo ou história social — mostrando meu rosto, o caminho, a sala e o que vai acontecer, com orientação de assistir durante alguns dias."
+    text: "Eu sempre antecipo para o cliente atípico o que vai acontecer e envio orientações antes."
   },
   {
     bloco: 1,
@@ -554,13 +603,13 @@ const questions = [
     bloco: 3,
     number: 12,
     title: "A condução",
-    text: "Eu uso um temporizador visível, combino o tempo com a criança no começo e respeito quando ele acaba."
+    text: "Dependendo do perfil da criança, eu uso um temporizador visível, combino o tempo com a criança no começo e respeito quando ele acaba."
   },
   {
     bloco: 3,
     number: 13,
     title: "A condução",
-    text: "Eu uso um quadro de incentivo com as etapas e as combinações: pode pedir pausa, pode apagar a luz, pode tirar a brincadeira."
+    text: "Eu uso um quadro de incentivo com as etapas e as combinações: pode pedir pausa, pode apagar a luz, pode trocar a brincadeira."
   },
   {
     bloco: 3,
@@ -572,7 +621,7 @@ const questions = [
     bloco: 3,
     number: 15,
     title: "A condução",
-    text: "Eu sei diferenciar birra de desregulação e tenho o que fazer nos primeiros noventa segundos de uma crise: baixar estímulo, não invalidar, não insistir."
+    text: "Eu sei diferenciar birra de desregulação e tenho o que fazer nos primeiros noventa segundos de uma crise."
   },
 
   // BLOCO 04 - Depois, e o negócio
@@ -604,7 +653,7 @@ const questions = [
     bloco: 4,
     number: 20,
     title: "Depois, e o negócio",
-    text: "Meu preço considera o tempo real desse atendimento — anamnese, pesquisa, antecipação, montagem por perfil, ensaio mais longo — e eu sei explicar isso à família sem me descumprir."
+    text: "Meu preço carrega toda a preparação antes, durante, e caso precise eu remarco o ensaio — explico isso à família sempre antes!"
   }
 ];
 
@@ -651,26 +700,48 @@ let currentQuestion = 0;
 let answers = new Array(20).fill(null);
 let fotografoData = { nome: '', whatsapp: '', email: '' };
 
+// ---- WhatsApp: máscara ao digitar, e guarda no formato 55DDNNNNNNNNN (igual ao config.js)
+function mascaraWhatsapp(v) {
+  let bruto = v.replace(/\D/g, '');
+  // colou com o país? tira o 55 da frente. O ">11" protege quem tem DDD 55 (RS).
+  if (bruto.startsWith('55') && bruto.length > 11) bruto = bruto.slice(2);
+  const d = bruto.slice(0, 11);
+  if (d.length <= 2) return d.length ? '(' + d : '';
+  if (d.length <= 6) return '(' + d.slice(0, 2) + ') ' + d.slice(2);
+  if (d.length <= 10) return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6);
+  return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
+}
+
+function normalizaWhatsapp(v) {
+  let d = v.replace(/\D/g, '');
+  if (d.startsWith('55') && d.length > 11) d = d.slice(2);   // já veio com país
+  if (d.length !== 10 && d.length !== 11) return null;        // DDD + 8 ou 9 dígitos
+  if (d[0] === '0') return null;                              // DDD não começa com zero
+  return '55' + d;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const campo = document.getElementById('inicialWhatsapp');
+  if (campo) campo.addEventListener('input', e => {
+    const fim = e.target.selectionStart === e.target.value.length;
+    e.target.value = mascaraWhatsapp(e.target.value);
+    if (fim) e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+  });
+});
+
 function init() {
-  // Mostrar apenas o formulário inicial
-  document.getElementById('formScreen').classList.add('show');
+  // Mostrar apenas a tela intro (sem formulário)
+  document.getElementById('introScreen').classList.add('show');
 }
 
 function startQuestions() {
-  const nome = document.getElementById('inicialNome').value;
-  const whatsapp = document.getElementById('inicialWhatsapp').value;
-  const email = document.getElementById('inicialEmail').value;
+  // Novo fluxo: Quiz começa direto, SEM pedir dados
+  currentQuestion = 0;
+  answers = new Array(20).fill(null);
+  fotografoData = { nome: '', whatsapp: '', email: '', segmentacao: '' };
 
-  if (!nome || !whatsapp || !email) {
-    alert('Por favor, preencha todos os campos');
-    return;
-  }
-
-  // Guardar dados do fotógrafo
-  fotografoData = { nome, whatsapp, email };
-
-  // Esconder formulário e mostrar perguntas
-  document.getElementById('formScreen').classList.remove('show');
+  // Esconder tela intro e mostrar perguntas
+  document.getElementById('introScreen').classList.remove('show');
   document.getElementById('progressBarContainer').style.display = 'block';
   document.getElementById('blocoNav').style.display = 'grid';
 
@@ -753,7 +824,7 @@ function updateProgress() {
   updateNavButtons();
 
   if (answered === 20) {
-    showResult();
+    showCaptureForm();  // NOVO: Mostrar formulário ao invés de resumo
   }
 }
 
@@ -784,43 +855,26 @@ function goToBloco(bloco) {
   window.scrollTo(0, 0);
 }
 
-function showResult() {
-  const total = answers.reduce((a, b) => a + b, 0);
-
+function showCaptureForm() {
+  // NOVO: Mostrar formulário de captura ao terminar o quiz
   document.getElementById('questionsContainer').innerHTML = '';
   document.getElementById('blocoNav').style.display = 'none';
   document.querySelector('.nav-buttons').style.display = 'none';
 
-  // Calcular pontos por bloco
-  const blocoScores = [
-    { nome: 'Antes do ensaio', pontos: answers.slice(0, 5).reduce((a, b) => a + b, 0) },
-    { nome: 'O ambiente', pontos: answers.slice(5, 10).reduce((a, b) => a + b, 0) },
-    { nome: 'A condução', pontos: answers.slice(10, 15).reduce((a, b) => a + b, 0) },
-    { nome: 'Depois, e o negócio', pontos: answers.slice(15, 20).reduce((a, b) => a + b, 0) }
-  ];
+  const captureScreen = document.getElementById('captureScreen');
+  captureScreen.classList.add('show');
 
-  // Mostrar resumo com blocos
-  const blocoHTML = blocoScores.map((b, i) => `
-    <div style="background: white; border: 1px solid #E7DCCB; border-radius: 8px; padding: 16px; text-align: center;">
-      <div style="font-size: 14px; color: #5B5049; margin-bottom: 8px;">Bloco ${i+1} · ${b.nome}</div>
-      <div style="font-size: 20px; font-weight: 700; color: #E8AE3B;">${b.pontos}/10</div>
-    </div>
-  `).join('');
+  // Adicionar máscara de WhatsApp no formulário de captura também
+  const campoCaptura = document.getElementById('capturaWhatsapp');
+  if (campoCaptura && !campoCaptura._mascaraAplicada) {
+    campoCaptura.addEventListener('input', e => {
+      const fim = e.target.selectionStart === e.target.value.length;
+      e.target.value = mascaraWhatsapp(e.target.value);
+      if (fim) e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+    });
+    campoCaptura._mascaraAplicada = true;
+  }
 
-  document.getElementById('blocoScores').innerHTML = blocoHTML;
-  document.getElementById('totalScore').textContent = total;
-
-  // Faixas
-  const faixasHTML = `
-    <div style="background: ${total >= 0 && total <= 12 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">0-12</div>
-    <div style="background: ${total >= 13 && total <= 22 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">13-22</div>
-    <div style="background: ${total >= 23 && total <= 31 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">23-31</div>
-    <div style="background: ${total >= 32 && total <= 40 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">32-40</div>
-  `;
-  document.getElementById('faixas').innerHTML = faixasHTML;
-
-  const summaryScreen = document.getElementById('summaryScreen');
-  summaryScreen.classList.add('show');
   window.scrollTo(0, 0);
 }
 
@@ -853,26 +907,150 @@ function showFinalResult() {
   window.scrollTo(0, 0);
 }
 
+function submitCaptureFormAndShowSummary() {
+  // NOVO: Validar formulário de captura e mostrar resumo
+  const nome = document.getElementById('capturaNome').value.trim();
+  const whatsapp = document.getElementById('capturaWhatsapp').value;
+  const email = document.getElementById('capturaEmail').value.trim();
+  const segmentacao = document.getElementById('capturaSegmentacao').value;
+
+  if (!nome || !whatsapp || !email || !segmentacao) {
+    alert('Por favor, preencha todos os campos.');
+    return;
+  }
+
+  const zap = normalizaWhatsapp(whatsapp);
+  if (!zap) {
+    alert('Confira o WhatsApp: precisa ser DDD + número, como (14) 99999-9999.');
+    document.getElementById('capturaWhatsapp').focus();
+    return;
+  }
+
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) {
+    alert('Confira o e-mail — parece estar incompleto.');
+    document.getElementById('capturaEmail').focus();
+    return;
+  }
+
+  // GUARDAR dados globalmente
+  fotografoData = { nome, whatsapp: zap, email: email.toLowerCase(), segmentacao };
+
+  // Esconder formulário de captura e mostrar resumo
+  document.getElementById('captureScreen').classList.remove('show');
+  document.getElementById('progressBarContainer').style.display = 'none';
+
+  // Mostrar resumo com blocos
+  const total = answers.reduce((a, b) => a + b, 0);
+  const blocoScores = [
+    { nome: 'Antes do ensaio', pontos: answers.slice(0, 5).reduce((a, b) => a + b, 0) },
+    { nome: 'O ambiente', pontos: answers.slice(5, 10).reduce((a, b) => a + b, 0) },
+    { nome: 'A condução', pontos: answers.slice(10, 15).reduce((a, b) => a + b, 0) },
+    { nome: 'Depois, e o negócio', pontos: answers.slice(15, 20).reduce((a, b) => a + b, 0) }
+  ];
+
+  const blocoHTML = blocoScores.map((b, i) => `
+    <div style="background: white; border: 1px solid #E7DCCB; border-radius: 8px; padding: 16px; text-align: center;">
+      <div style="font-size: 14px; color: #5B5049; margin-bottom: 8px;">Bloco ${i+1} · ${b.nome}</div>
+      <div style="font-size: 20px; font-weight: 700; color: #E8AE3B;">${b.pontos}/10</div>
+    </div>
+  `).join('');
+
+  document.getElementById('blocoScores').innerHTML = blocoHTML;
+  document.getElementById('totalScore').textContent = total;
+
+  // Faixas
+  const faixasHTML = `
+    <div style="background: ${total >= 0 && total <= 12 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">0-12</div>
+    <div style="background: ${total >= 13 && total <= 22 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">13-22</div>
+    <div style="background: ${total >= 23 && total <= 31 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">23-31</div>
+    <div style="background: ${total >= 32 && total <= 40 ? '#4A6270' : '#D0D0D0'}; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 600;">32-40</div>
+  `;
+  document.getElementById('faixas').innerHTML = faixasHTML;
+
+  const summaryScreen = document.getElementById('summaryScreen');
+  summaryScreen.classList.add('show');
+  window.scrollTo(0, 0);
+}
+
 function saveSummaryAndShowResult() {
   const total = answers.reduce((a, b) => a + b, 0);
+  const porBloco = n => questions.reduce((soma, q, i) => q.bloco === n ? soma + (answers[i] || 0) : soma, 0);
+
   const data = {
     nome: fotografoData.nome,
     whatsapp: fotografoData.whatsapp,
     email: fotografoData.email,
-    score: total,
-    resultado: total <= 12 ? '0-12' : total <= 22 ? '13-22' : total <= 31 ? '23-31' : '32-40',
-    data: new Date().toISOString(),
+    pontuacao: total,
+    bloco_01: porBloco(1),
+    bloco_02: porBloco(2),
+    bloco_03: porBloco(3),
+    bloco_04: porBloco(4),
   };
 
-  // Salvar em localStorage
-  const leads = JSON.parse(localStorage.getItem('leads_bob') || '[]');
-  leads.push(data);
-  localStorage.setItem('leads_bob', JSON.stringify(leads));
+  // cópia local, para nada se perder se a rede falhar
+  try {
+    const leads = JSON.parse(localStorage.getItem('leads_bob') || '[]');
+    leads.push({ ...data, data: new Date().toISOString() });
+    localStorage.setItem('leads_bob', JSON.stringify(leads));
+  } catch (e) { /* modo anônimo bloqueia storage — segue o jogo */ }
 
-  console.log('Lead capturado:', data);
+  // grava no Supabase sem travar o resultado da pessoa
+  fetch(SUPABASE_URL + '/rest/v1/leads', {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal',
+    },
+    body: JSON.stringify(data),
+  }).then(r => {
+    if (!r.ok) return r.text().then(t => console.error('Supabase recusou:', r.status, t));
+    console.log('Lead salvo.');
+  }).catch(e => console.error('Falha de rede ao salvar lead:', e));
 
-  // Mostrar resultado final
+  // lead capturado
+  if (typeof fbq === 'function') fbq('track', 'Lead');
+
+  // manda o resultado por e-mail. Se falhar, o lead já está salvo e a tela não trava.
+  fetch(SUPABASE_URL + '/functions/v1/enviar-resultado', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  }).then(r => {
+    if (!r.ok) return r.text().then(t => console.error('E-mail não saiu:', r.status, t));
+    console.log('Resultado enviado por e-mail.');
+  }).catch(e => console.error('Falha de rede ao enviar o e-mail:', e));
+
   showFinalResult();
+}
+
+function restartQuiz() {
+  // Reset de tudo e volta para a intro
+  currentQuestion = 0;
+  answers = new Array(20).fill(null);
+  fotografoData = { nome: '', whatsapp: '', email: '', segmentacao: '' };
+
+  // Limpar telas
+  document.getElementById('captureScreen').classList.remove('show');
+  document.getElementById('summaryScreen').classList.remove('show');
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('questionsContainer').innerHTML = '';
+  document.getElementById('progressBarContainer').style.display = 'none';
+  document.getElementById('blocoNav').style.display = 'none';
+  document.querySelector('.nav-buttons').style.display = 'flex';
+
+  // Limpar inputs do formulário
+  document.getElementById('capturaNome').value = '';
+  document.getElementById('capturaWhatsapp').value = '';
+  document.getElementById('capturaEmail').value = '';
+  document.getElementById('capturaSegmentacao').value = '';
+
+  // Mostrar intro
+  init();
 }
 
 // Iniciar
